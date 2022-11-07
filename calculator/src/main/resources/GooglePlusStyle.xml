@@ -17,6 +17,7 @@
 <module name="Checker">
   <property name="charset" value="UTF-8" />
 
+
   <property name="severity" value="warning" />
 
   <property name="fileExtensions" value="java, properties, xml" />
@@ -292,7 +293,7 @@
       <property name="allowedAnnotations" value="Override, Test" />
       <property name="tokens" value="METHOD_DEF, CTOR_DEF, ANNOTATION_FIELD_DEF, COMPACT_CTOR_DEF" />
     </module>
-    
+
     <module name="MissingJavadocMethod">
       <property name="scope" value="public" />
       <property name="allowedAnnotations" value="Override, Test" />
@@ -308,9 +309,6 @@
     <module name="MethodName">
       <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9_]*$" />
       <message key="name.invalidPattern" value="Method name ''{0}'' must match pattern ''{1}''." />
-    </module>
-    <module name="MissingCtor">
-      <property name="severity" value="warning"/>
     </module>
     <module name="SingleLineJavadoc" />
     <module name="EmptyCatchBlock">
