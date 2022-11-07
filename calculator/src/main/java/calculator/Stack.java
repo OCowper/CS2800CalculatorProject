@@ -10,6 +10,11 @@ import java.util.EmptyStackException;
  */
 public class Stack {
 
+  /**
+   * Constructs an empty instance of stack.
+   */
+  public Stack() {}
+
   private int size = 0; // counts the current size of the stack
   private ArrayList<Entry> entries;
   // holds each value in the stack.
