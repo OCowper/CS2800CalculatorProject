@@ -29,6 +29,6 @@
       <Label text="Answer:" GridPane.rowIndex="1" />
       <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label fx:id="answerLabel" text="______" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="calEntry" onAction="#isEntered" promptText="Enter Calculation" GridPane.columnIndex="1" />
+      <TextField fx:id="calEntry" promptText="Enter Calculation" GridPane.columnIndex="1" />
    </children>
 </GridPane>
