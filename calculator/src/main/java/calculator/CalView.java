@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 
 /**
  * View class to handle GUI elements and some behaviours. Adapted from the javafx demo.
@@ -28,6 +29,9 @@ public class CalView {
 
   @FXML
   private RadioButton postfixSel;
+  
+  @FXML
+  private ToggleGroup fixGroup;
 
   @FXML
   void isEntered(ActionEvent event) {
@@ -42,7 +46,6 @@ public class CalView {
 
   @FXML
   void postIsSelected(ActionEvent event) {
-
   }
 
   @FXML

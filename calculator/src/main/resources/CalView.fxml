@@ -4,11 +4,12 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.6-internal" fx:controller="calculator.CalView">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.6-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="calculator.CalView">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="310.0" minWidth="10.0" prefWidth="301.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="375.0" minWidth="10.0" prefWidth="299.0" />
@@ -20,8 +21,11 @@
   </rowConstraints>
    <children>
       <Button fx:id="calButton" mnemonicParsing="false" onAction="#isPressed" text="Calculate" />
-      <RadioButton fx:id="postfixSel" mnemonicParsing="false" onAction="#postIsSelected" text="Postfix" GridPane.rowIndex="2" />
-      <RadioButton fx:id="infixSel" mnemonicParsing="false" onAction="#inIsSelected" text="Infix" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <RadioButton fx:id="postfixSel" mnemonicParsing="false" onAction="#postIsSelected" selected="true" text="Postfix" GridPane.rowIndex="2">
+         <toggleGroup>
+            <ToggleGroup fx:id="fixGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="infixSel" mnemonicParsing="false" onAction="#inIsSelected" text="Infix" toggleGroup="$fixGroup" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <Label text="Answer:" GridPane.rowIndex="1" />
       <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <Label fx:id="answerLabel" text="______" GridPane.columnIndex="1" GridPane.rowIndex="1" />
