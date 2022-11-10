@@ -1,0 +1,7 @@
+This is Release Version 0.1
+
+The only thing currently implemented from a user perspective is the GUI.
+
+This version of the GUI will look and work in a similar way to that in the final product, so this release is to collect client feedback on it.
+
+Currently the calculate button only returns a dummy value - not the result of any actual calculation.
