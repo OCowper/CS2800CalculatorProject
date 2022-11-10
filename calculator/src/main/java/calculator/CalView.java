@@ -36,6 +36,7 @@ public class CalView {
 
   @FXML
   void isPressed(ActionEvent event) {
+    answerLabel.setText("24.7");
 
   }
 
@@ -46,7 +47,6 @@ public class CalView {
 
   @FXML
   void inIsSelected(ActionEvent event) {
-
   }
 
 }
