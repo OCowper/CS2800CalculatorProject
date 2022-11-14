@@ -37,7 +37,7 @@ public class CalcController {
    * @return a string representing what has been submitted by the user
    */
   public String getExpression() {
-    return "5 * 7";
+    return view.getExpression();
   }
 
   /**
