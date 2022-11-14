@@ -20,7 +20,7 @@ public class CalcControllerTest {
    */
   @BeforeEach
   public void setup() {
-    CalView testView = new CalView();
+    testView = new CalView();
     boolean curMethod = true;
     testController = new CalcController(testView, curMethod);
   }
@@ -41,6 +41,13 @@ public class CalcControllerTest {
   void testGetExpression() {
     assertEquals(testController.getExpression(), "5 * 7",
         "getExp should return the expression as a suitable string");
+  } // the controller should have a method for collecting the current expression
+  // currently faked but later will collect from the view.
+  
+  @Test // test 4
+  void testReturnAnswer() {
+    testController.setAnswer("56.8");
+    assertEquals(testView.getAnswer(), "56.8", "setting answer to 56.8 should set it in view");
   }
 
 }

@@ -30,6 +30,15 @@ public class CalView implements ViewInterface {
   }
 
   /**
+   * Returns the last calculated answer.
+   *
+   * @return the last calculation completed.
+   */
+  public String getAnswer() {
+    return answer;
+  }
+
+  /**
    * Sets the answer to the given parameter.
    *
    * @param answer the answer answer calculated as a String.

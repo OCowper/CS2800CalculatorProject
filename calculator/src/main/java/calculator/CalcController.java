@@ -2,7 +2,8 @@ package calculator;
 
 /**
  * A controller for the Calculator. Collects expressions from the view and sends them to the model
- * to be calculated, and then collects and sends on those results.
+ * to be calculated, and then collects and sends on those results. Loosely based off code from the
+ * MVC demo.
  *
  * @author zkac355
  */
@@ -29,9 +30,23 @@ public class CalcController {
     this.view = view;
     this.isInfix = isInfix;
   }
-  
+
+  /**
+   * Collects the expression currently contained in the text field and returns it.
+   *
+   * @return a string representing what has been submitted by the user
+   */
   public String getExpression() {
     return "5 * 7";
+  }
+
+  /**
+   * Sets the view field answer to the answer that has just been calculated.
+   *
+   * @param answer the answer to the just submitted expression
+   */
+  public void setAnswer(String answer) {
+    view.setAnswer(answer);
   }
 
 }
