@@ -19,6 +19,7 @@ public class CalView implements ViewInterface {
   private String expression;
   // contains the answer to be returned
   private String answer = "24.7";
+  private boolean infix;
 
   /**
    * Returns the expression entered by the user in the text field.
@@ -45,6 +46,10 @@ public class CalView implements ViewInterface {
    */
   public void setAnswer(String answer) {
     this.answer = answer;
+  }
+  
+  public boolean getType() {
+    return infix;
   }
 
   @FXML
@@ -84,11 +89,15 @@ public class CalView implements ViewInterface {
 
   @FXML
   // triggered when the Postfix radio button is selected.
-  void postIsSelected(ActionEvent event) {}
+  void postIsSelected(ActionEvent event) {
+    infix = false;
+  }
 
   @FXML
   // triggered when the Infix radio button is selected.
-  void inIsSelected(ActionEvent event) {}
+  void inIsSelected(ActionEvent event) {
+    infix = true;
+  }
 
 
 

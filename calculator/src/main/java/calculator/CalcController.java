@@ -37,6 +37,7 @@ public class CalcController {
    * @return a string representing what has been submitted by the user
    */
   public String getExpression() {
+    checkType();
     return view.getExpression();
   }
 
@@ -47,6 +48,10 @@ public class CalcController {
    */
   public void setAnswer(String answer) {
     view.setAnswer(answer);
+  }
+  
+  private void checkType() {
+    isInfix = view.getType();
   }
 
 }
