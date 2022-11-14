@@ -1,5 +1,7 @@
 package calculator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -14,11 +16,13 @@ public class CalcControllerTest {
   private CalView testView;
 
   /**
-   * Setups the tests by creating a controller instance before each one. 
+   * Setups the tests by creating a controller instance before each one.
    */
   @BeforeEach
   public void setup() {
-    testController = new CalcController();
+    CalView testView = new CalView();
+    boolean curMethod = true;
+    testController = new CalcController(testView, curMethod);
   }
 
 
@@ -29,9 +33,14 @@ public class CalcControllerTest {
 
   @Test // test 2
   void testConstruction() {
-    CalView testView = new CalView();
     boolean curMethod = true;
     testController = new CalcController(testView, curMethod);
   } // the controller should be instanstiated with the view it is controlling
+
+  @Test // test 3
+  void testGetExpression() {
+    assertEquals(testController.getExpression(), "5 * 7",
+        "getExp should return the expression as a suitable string");
+  }
 
 }

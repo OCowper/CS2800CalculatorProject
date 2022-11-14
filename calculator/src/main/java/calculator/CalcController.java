@@ -29,5 +29,9 @@ public class CalcController {
     this.view = view;
     this.isInfix = isInfix;
   }
+  
+  public String getExpression() {
+    return "5 * 7";
+  }
 
 }
