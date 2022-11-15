@@ -37,13 +37,6 @@ public class MockDriver extends Application {
     primaryStage.setScene(scene);
     primaryStage.show();
 
-
-
-    // Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("CalView.fxml"));
-    // Scene scene = new Scene(root, 800, 500);
-    // primaryStage.setScene(scene);
-    // primaryStage.show();
-
   }
 
 }
