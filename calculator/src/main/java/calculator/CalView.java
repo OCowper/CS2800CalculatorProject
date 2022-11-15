@@ -13,13 +13,18 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author zkac355
  */
-public class CalView implements ViewInterface {
+public class CalView implements ViewInterface, Subject {
 
+  // the observer viewing this class
+  public Observer obs;
   // contains the given expression
   private String expression;
   // contains the answer to be returned
   private String answer = "24.7";
-  private boolean infix;
+
+  // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
+  // cannot occur if empty.
+  private boolean infix = false;
 
   /**
    * Returns the expression entered by the user in the text field.
@@ -29,15 +34,7 @@ public class CalView implements ViewInterface {
   public String getExpression() {
     return calEntry.getText();
   }
-
-  /**
-   * Returns the last calculated answer.
-   *
-   * @return the last calculation completed.
-   */
-  public String getAnswer() {
-    return answer;
-  }
+  
 
   /**
    * Sets the answer to the given parameter.
@@ -46,8 +43,14 @@ public class CalView implements ViewInterface {
    */
   public void setAnswer(String answer) {
     this.answer = answer;
+    answerLabel.setText(answer);
   }
-  
+
+  /**
+   * Returns the currently selected calculation type.
+   *
+   * @return a boolean containing true if infix, false if postfix.
+   */
   public boolean getType() {
     return infix;
   }
@@ -83,20 +86,35 @@ public class CalView implements ViewInterface {
   // triggered when the button is pressed.
   void isPressed(ActionEvent event) {
     expression = getExpression();
+    notifyObserver(obs);
     setAnswer(answer);
-
   }
 
   @FXML
   // triggered when the Postfix radio button is selected.
   void postIsSelected(ActionEvent event) {
     infix = false;
+    notifyObserver(obs);
   }
 
   @FXML
   // triggered when the Infix radio button is selected.
   void inIsSelected(ActionEvent event) {
     infix = true;
+    notifyObserver(obs);
+  }
+
+  @Override
+  public void addObserver(Observer obs) {
+    this.obs = obs;
+
+  }
+
+
+  @Override
+  public void notifyObserver(Observer obs) {
+    obs.update(expression, infix);
+
   }
 
 
