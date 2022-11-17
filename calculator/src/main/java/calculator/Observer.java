@@ -11,9 +11,9 @@ public interface Observer {
    * Updates the observer with new data.
    *
    * @param expression the submitted expression to be calculated
-   * @param calcType the selected calculation type. True if infix, false if postfix.
+   * @param calcType the selected calculation type. Enum can be Post or Infix.
    */
-  public void update(String expression, boolean calcType);
+  public void update(String expression, Notation calcType);
 
   public void update(Float answer);
 }

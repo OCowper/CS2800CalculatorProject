@@ -14,7 +14,7 @@ public class CalcController implements Observer {
   // field containing the instance of view being used
   private CalView view;
   // field describing the current method of calculation
-  private boolean isInfix;
+  private Notation type;
   private String expression;
   private Float answer;
 
@@ -28,11 +28,11 @@ public class CalcController implements Observer {
    * selected.
    *
    * @param view the current view being used
-   * @param isInfix will be true if infix is selected, false is postfix is selected
+   * @param type will be true if infix is selected, false is postfix is selected
    */
-  public CalcController(CalView view, boolean isInfix) {
+  public CalcController(CalView view, Notation type) {
     this.view = view;
-    this.isInfix = isInfix;
+    this.type = type;
     view.addObserver(this);
   }
 
@@ -56,7 +56,7 @@ public class CalcController implements Observer {
 
   // collects the type from the view.
   private void checkType() {
-    isInfix = view.getType();
+    type = view.getType();
   }
 
   /**
@@ -70,9 +70,9 @@ public class CalcController implements Observer {
 
 
   @Override
-  public void update(String expression, boolean calcType) {
+  public void update(String expression, Notation calcType) {
     this.expression = expression;
-    this.isInfix = calcType;
+    this.type = calcType;
     calculate();
 
   }
@@ -83,7 +83,7 @@ public class CalcController implements Observer {
   }
 
   private void calculate() {
-    model.evaluate(expression, isInfix);
+    model.evaluate(expression, type);
     returnAnswer(Float.toString(answer));
   }
 

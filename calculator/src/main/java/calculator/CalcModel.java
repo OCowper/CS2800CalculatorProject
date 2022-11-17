@@ -21,10 +21,10 @@ public class CalcModel implements Subject {
    * field.
    *
    * @param expression the expression to be calculated as a string.
-   * @param infix true if infix selected, false if postfix selected.
+   * @param type true if infix selected, false if postfix selected.
    */
-  public void evaluate(String expression, boolean infix) {
-    if (infix) {
+  public void evaluate(String expression, Notation type) {
+    if (type == Notation.INFIX) {
       answer = infixCalc(expression);
     } else {
       answer = postfixCalc(expression);

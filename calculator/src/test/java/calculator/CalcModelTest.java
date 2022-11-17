@@ -28,9 +28,9 @@ public class CalcModelTest {
 
   @Test // test 2
   void testCalculateMethod() {
-    testModel.evaluate("5 + 6", true);
+    testModel.evaluate("5 + 6", Notation.POSTFIX);
     assertEquals(testModel.getAnswer(), 11f, "5 + 6 should return 11");
-    testModel.evaluate("5 + 6", true);
+    testModel.evaluate("5 + 6", Notation.POSTFIX);
     assertEquals(testModel.getAnswer(), 11f,
         "the same should be true for postfix or infix");
   } // test later refactored to work with evaluate now a void method.
@@ -39,7 +39,7 @@ public class CalcModelTest {
   void returnAnswer() {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
-    testModel.evaluate("5 + 6", true);
+    testModel.evaluate("5 + 6", Notation.POSTFIX);
     testModel.notifyObserver(cont);
     assertEquals(cont.getAnswer(), 11f, "evaluating an expression should return to answer");
   } // passed by adding the controller as an observer of the model and refactoring

@@ -24,7 +24,7 @@ public class CalView implements ViewInterface, Subject {
 
   // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
   // cannot occur if empty.
-  private boolean infix = false;
+  private Notation type = Notation.POSTFIX;
 
   /**
    * Returns the expression entered by the user in the text field.
@@ -51,8 +51,8 @@ public class CalView implements ViewInterface, Subject {
    *
    * @return a boolean containing true if infix, false if postfix.
    */
-  public boolean getType() {
-    return infix;
+  public Notation getType() {
+    return type;
   }
 
   @FXML
@@ -93,14 +93,14 @@ public class CalView implements ViewInterface, Subject {
   @FXML
   // triggered when the Postfix radio button is selected.
   void postIsSelected(ActionEvent event) {
-    infix = false;
+    type = Notation.POSTFIX;
     notifyObserver(obs);
   }
 
   @FXML
   // triggered when the Infix radio button is selected.
   void inIsSelected(ActionEvent event) {
-    infix = true;
+    type = Notation.INFIX;
     notifyObserver(obs);
   }
 
@@ -113,7 +113,7 @@ public class CalView implements ViewInterface, Subject {
 
   @Override
   public void notifyObserver(Observer obs) {
-    obs.update(expression, infix);
+    obs.update(expression, type);
 
   }
 

@@ -33,7 +33,7 @@ public class MockDriver extends Application {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    CalcController contr = new CalcController(loader.getController(), true);
+    CalcController contr = new CalcController(loader.getController(), Notation.POSTFIX);
     primaryStage.setScene(scene);
     primaryStage.show();
 

@@ -19,9 +19,9 @@ public class CalcControllerTest {
   @BeforeEach
   public void setup() {
     testView = new CalView();
-    boolean curMethod = true;
+    Notation curMethod = Notation.POSTFIX;
     testController = new CalcController(testView, curMethod);
-  }
+  } // refactored to support enum notation rather than boolean
 
 
   @Test // test 1
@@ -31,8 +31,9 @@ public class CalcControllerTest {
 
   @Test // test 2
   void testConstruction() {
-    boolean curMethod = true;
+    Notation curMethod = Notation.POSTFIX;
     testController = new CalcController(testView, curMethod);
   } // the controller should be instanstiated with the view it is controlling
+  // refactored to support enum notation rather than boolean
 
 }
