@@ -13,12 +13,60 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author zkac355
  */
-public class CalView {
-  
+public class CalView implements ViewInterface, Subject {
+
+  // the observer viewing this class
+  public Observer obs;
   // contains the given expression
   private String expression;
   // contains the answer to be returned
   private String answer = "24.7";
+  // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
+  // cannot occur if empty.
+  private Notation type = Notation.POSTFIX;
+
+  /**
+   * Returns the expression entered by the user in the text field.
+   *
+   * @return the string currently in the text field
+   */
+  public String getExpression() {
+    return calEntry.getText();
+  }
+
+
+  /**
+   * Sets the answer to the given parameter.
+   *
+   * @param answer the answer answer calculated as a String.
+   */
+  public void setAnswer(String answer) {
+    this.answer = answer;
+    answerLabel.setText(answer);
+  }
+
+  /**
+   * Returns the currently selected calculation type.
+   *
+   * @return a boolean containing true if infix, false if postfix.
+   */
+  public Notation getType() {
+    return type;
+  }
+
+  @Override
+  public void addObserver(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObserver(Observer obs) {
+    obs.update(expression, type);
+
+  }
+
+  ///////////////////////////////////////////////////////////// FXML STARTS HERE
 
   @FXML
   // label representing the answer of the calculation. Starts as "______", then changed to the
@@ -50,17 +98,24 @@ public class CalView {
   @FXML
   // triggered when the button is pressed.
   void isPressed(ActionEvent event) {
-    expression = calEntry.getText();
-    answerLabel.setText(answer);
-
+    expression = getExpression();
+    notifyObserver(obs);
+    setAnswer(answer);
+    // the answer field has already been updated with the calculated result by controller
   }
 
   @FXML
   // triggered when the Postfix radio button is selected.
-  void postIsSelected(ActionEvent event) {}
+  void postIsSelected(ActionEvent event) {
+    type = Notation.POSTFIX;
+    notifyObserver(obs);
+  }
 
   @FXML
   // triggered when the Infix radio button is selected.
-  void inIsSelected(ActionEvent event) {}
+  void inIsSelected(ActionEvent event) {
+    type = Notation.INFIX;
+    notifyObserver(obs);
+  }
 
 }
