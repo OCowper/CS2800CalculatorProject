@@ -14,4 +14,6 @@ public interface Observer {
    * @param calcType the selected calculation type. True if infix, false if postfix.
    */
   public void update(String expression, boolean calcType);
+
+  public void update(Float answer);
 }

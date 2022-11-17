@@ -6,10 +6,30 @@ package calculator;
  *
  * @author zkac355
  */
-public class CalcModel {
+public class CalcModel implements Subject {
+  
+  private Float answer;
+  
+  private Observer obs;
 
-  public float evaluate(String expression, boolean infix) {
-    return 11f; 
+  public void evaluate(String expression, boolean infix) {
+    answer = 11f; 
+  }
+
+  @Override
+  public void addObserver(Observer obs) {
+    this.obs = obs;
+    
+  }
+
+  @Override
+  public void notifyObserver(Observer obs) {
+    obs.update(answer);
+    
+  }
+
+  public Float getAnswer() {
+    return answer;
   }
 
 }

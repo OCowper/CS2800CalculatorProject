@@ -15,6 +15,7 @@ public class CalcController implements Observer {
   // field describing the current method of calculation
   private boolean isInfix;
   private String expression;
+  private Float answer;
 
   /**
    * Creates an empty instance of the controller.
@@ -38,9 +39,18 @@ public class CalcController implements Observer {
    * Collects the expression currently contained in the text field and returns it into expression
    * field.
    */
-  public void getExpression() {
+  public void collectExpression() {
     checkType();
     expression = view.getExpression();
+  }
+  
+  /**
+   * Returns the currently stored answer.
+   *
+   * @return the answer as a float.
+   */
+  public Float getAnswer() {
+    return answer;
   }
 
   // collects the type from the view.
@@ -53,7 +63,7 @@ public class CalcController implements Observer {
    *
    * @param answer the answer to the just submitted expression
    */
-  public void setAnswer(String answer) {
+  public void returnAnswer(String answer) {
     view.setAnswer(answer);
   }
 
@@ -65,6 +75,11 @@ public class CalcController implements Observer {
     calculate();
 
   }
+  
+  @Override
+  public void update(Float answer) {
+    this.answer = answer;
+  }
 
   private void calculate() {
     String strReturn = "";
@@ -74,7 +89,7 @@ public class CalcController implements Observer {
     } else {
       strReturn = (expression + " postfix");
     }
-    setAnswer(strReturn);
+    returnAnswer(strReturn);
   }
 
 }

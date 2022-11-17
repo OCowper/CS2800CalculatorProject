@@ -25,9 +25,20 @@ public class CalcModelTest {
 
   @Test // test 2
   void testCalculateMethod() {
-    assertEquals(testModel.evaluate("5 + 6", true), 11f, "5 + 6 should return 11");
-    assertEquals(testModel.evaluate("5 + 6", false), 11f,
+    testModel.evaluate("5 + 6", true);
+    assertEquals(testModel.getAnswer(), 11f, "5 + 6 should return 11");
+    testModel.evaluate("5 + 6", true);
+    assertEquals(testModel.getAnswer(), 11f,
         "the same should be true for postfix or infix");
+  } // test later refactored to work with evaluate now a void method.
+
+  @Test // test 3
+  void returnAnswer() {
+    CalcController cont = new CalcController();
+    testModel.addObserver(cont);
+    testModel.evaluate("5 + 6", true);
+    testModel.notifyObserver(cont);
+    assertEquals(cont.getAnswer(), 11f, "evaluating an expression should return to answer");
   }
 
 }
