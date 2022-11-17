@@ -13,16 +13,18 @@ import org.junit.jupiter.api.Test;
 public class CalcModelTest {
 
   private CalcModel testModel;
+  private CalcController cont;
 
   @BeforeEach
   public void setup() {
-    testModel = new CalcModel();
+    cont = new CalcController();
+    testModel = new CalcModel(cont);
   }
 
   @Test // test 1
   void testClass() {
-    testModel = new CalcModel();
-  }
+    testModel = new CalcModel(cont);
+  } // refactored after test 3 to work with new constructor
 
   @Test // test 2
   void testCalculateMethod() {

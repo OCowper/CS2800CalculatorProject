@@ -11,13 +11,25 @@ public class CalcModel implements Subject {
   private Float answer;
 
   private Observer obs;
+  
+  public CalcModel(CalcController cont) {
+    addObserver(cont);
+  }
 
+  /**
+   * Selects a calculation method and uses it to return a value, which is then put into the answer
+   * field.
+   *
+   * @param expression the expression to be calculated as a string.
+   * @param infix true if infix selected, false if postfix selected.
+   */
   public void evaluate(String expression, boolean infix) {
     if (infix) {
       answer = infixCalc(expression);
     } else {
       answer = postfixCalc(expression);
     }
+    notifyObserver(obs);
   }
 
   private float postfixCalc(String expression) {

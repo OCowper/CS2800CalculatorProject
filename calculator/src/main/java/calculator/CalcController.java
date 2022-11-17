@@ -10,6 +10,7 @@ package calculator;
  */
 public class CalcController implements Observer {
 
+  private CalcModel model = new CalcModel(this);
   // field containing the instance of view being used
   private CalView view;
   // field describing the current method of calculation
@@ -82,14 +83,8 @@ public class CalcController implements Observer {
   }
 
   private void calculate() {
-    String strReturn = "";
-    if (isInfix == true) {
-
-      strReturn = (expression + " infix");
-    } else {
-      strReturn = (expression + " postfix");
-    }
-    returnAnswer(strReturn);
+    model.evaluate(expression, isInfix);
+    returnAnswer(Float.toString(answer));
   }
 
 }
