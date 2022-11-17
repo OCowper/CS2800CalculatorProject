@@ -10,12 +10,15 @@ package calculator;
  */
 public class CalcController implements Observer {
 
+  // field containing the instance of model being used.
   private CalcModel model = new CalcModel(this);
-  // field containing the instance of view being used
+  // field containing the instance of view being used. This is instantiated by the launcher.
   private CalView view;
   // field describing the current method of calculation
   private Notation type;
+  // field containing the current expression
   private String expression;
+  // field containing the current answer.
   private Float answer;
 
   /**
@@ -25,26 +28,17 @@ public class CalcController implements Observer {
 
   /**
    * Creates an instance of the controller containing the view, and which calculation method is
-   * selected.
+   * selected. Adds the view as an observer of this instance of the controller.
    *
    * @param view the current view being used
-   * @param type will be true if infix is selected, false is postfix is selected
+   * @param type enum containing either Postfix or Infix.
    */
   public CalcController(CalView view, Notation type) {
     this.view = view;
     this.type = type;
-    view.addObserver(this);
+    view.addObserver(this); // adds itself as an observer to the view.
   }
 
-  /**
-   * Collects the expression currently contained in the text field and returns it into expression
-   * field.
-   */
-  public void collectExpression() {
-    checkType();
-    expression = view.getExpression();
-  }
-  
   /**
    * Returns the currently stored answer.
    *
@@ -54,34 +48,40 @@ public class CalcController implements Observer {
     return answer;
   }
 
-  // collects the type from the view.
-  private void checkType() {
-    type = view.getType();
-  }
-
   /**
    * Sets the view field answer to the answer that has just been calculated.
    *
    * @param answer the answer to the just submitted expression
    */
   public void returnAnswer(String answer) {
-    view.setAnswer(answer);
+    view.setAnswer(answer); // gives the calculated answer back to view
   }
 
-
+  /**
+   * This version of update is used to collect information from the view, containing the expression
+   * and the notation. Will only calculate if a new expression is submitted.
+   */
   @Override
   public void update(String expression, Notation calcType) {
+    String curExpression = this.expression;
     this.expression = expression;
     this.type = calcType;
-    calculate();
-
+    if (curExpression != expression) { // does not recalculate if only the method has changed
+      calculate();
+    }
   }
-  
+
+  /**
+   * This version of update is used to collect information from the model, containing the calculated
+   * answer.
+   */
   @Override
   public void update(Float answer) {
     this.answer = answer;
   }
 
+  // calls the model to calculate the answer and then returns it to the view. the answer field is
+  // updated by model using observer.
   private void calculate() {
     model.evaluate(expression, type);
     returnAnswer(Float.toString(answer));

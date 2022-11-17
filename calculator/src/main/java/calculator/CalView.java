@@ -21,7 +21,6 @@ public class CalView implements ViewInterface, Subject {
   private String expression;
   // contains the answer to be returned
   private String answer = "24.7";
-
   // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
   // cannot occur if empty.
   private Notation type = Notation.POSTFIX;
@@ -34,7 +33,7 @@ public class CalView implements ViewInterface, Subject {
   public String getExpression() {
     return calEntry.getText();
   }
-  
+
 
   /**
    * Sets the answer to the given parameter.
@@ -54,6 +53,20 @@ public class CalView implements ViewInterface, Subject {
   public Notation getType() {
     return type;
   }
+
+  @Override
+  public void addObserver(Observer obs) {
+    this.obs = obs;
+
+  }
+
+  @Override
+  public void notifyObserver(Observer obs) {
+    obs.update(expression, type);
+
+  }
+
+  ///////////////////////////////////////////////////////////// FXML STARTS HERE
 
   @FXML
   // label representing the answer of the calculation. Starts as "______", then changed to the
@@ -88,6 +101,7 @@ public class CalView implements ViewInterface, Subject {
     expression = getExpression();
     notifyObserver(obs);
     setAnswer(answer);
+    // the answer field has already been updated with the calculated result by controller
   }
 
   @FXML
@@ -103,20 +117,5 @@ public class CalView implements ViewInterface, Subject {
     type = Notation.INFIX;
     notifyObserver(obs);
   }
-
-  @Override
-  public void addObserver(Observer obs) {
-    this.obs = obs;
-
-  }
-
-
-  @Override
-  public void notifyObserver(Observer obs) {
-    obs.update(expression, type);
-
-  }
-
-
 
 }
