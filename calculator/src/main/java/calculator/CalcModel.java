@@ -7,25 +7,39 @@ package calculator;
  * @author zkac355
  */
 public class CalcModel implements Subject {
-  
+
   private Float answer;
-  
+
   private Observer obs;
 
   public void evaluate(String expression, boolean infix) {
-    answer = 11f; 
+    if (infix) {
+      answer = infixCalc(expression);
+    } else {
+      answer = postfixCalc(expression);
+    }
+  }
+
+  private float postfixCalc(String expression) {
+    return 11f;
+
+  }
+
+  private float infixCalc(String expression) {
+    return 11f;
+
   }
 
   @Override
   public void addObserver(Observer obs) {
     this.obs = obs;
-    
+
   }
 
   @Override
   public void notifyObserver(Observer obs) {
     obs.update(answer);
-    
+
   }
 
   public Float getAnswer() {

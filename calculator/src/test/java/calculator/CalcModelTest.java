@@ -1,6 +1,7 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -39,6 +40,7 @@ public class CalcModelTest {
     testModel.evaluate("5 + 6", true);
     testModel.notifyObserver(cont);
     assertEquals(cont.getAnswer(), 11f, "evaluating an expression should return to answer");
-  }
+  } // passed by adding the controller as an observer of the model and refactoring
+  
 
 }
