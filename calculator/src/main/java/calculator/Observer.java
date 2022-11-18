@@ -17,7 +17,7 @@ public interface Observer {
 
   /**
    * Updates the observer with answer data.
-   * 
+   *
    * @param answer the calculated answer
    */
   public void update(Float answer);
