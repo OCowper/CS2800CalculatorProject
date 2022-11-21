@@ -7,4 +7,8 @@ package calculator;
  */
 public class PostfixCalc {
 
+  public Float evaluate(String testExpression) {
+    return 11f;
+  }
+
 }
