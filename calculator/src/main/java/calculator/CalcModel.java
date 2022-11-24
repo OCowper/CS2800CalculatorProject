@@ -8,12 +8,17 @@ package calculator;
  */
 public class CalcModel implements Subject {
 
+  // contains the answer once calculated
   private Float answer;
 
+  // the instance of controller observing the model - so that controller can be updated with the
+  // calculated answer
   private Observer obs;
   
+  // calculator used to evaluate expressions written in postfix. Instantiated in the constructor.
   private PostfixCalc postCalculator;
   
+  // calculator used to evaluate expressions written in infix. Instantiated in the constructor.
   private InfixCalc inCalculator;
 
   /**

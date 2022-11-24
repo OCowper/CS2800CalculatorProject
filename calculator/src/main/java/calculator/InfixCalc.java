@@ -7,7 +7,11 @@ package calculator;
  */
 public class InfixCalc implements CalcFace {
 
-  
+  /**
+   * Defines an instance of InfixCalc.
+   */
+  public InfixCalc() {}
+
   /**
    * Evaluates an expression given in infix format.
    *

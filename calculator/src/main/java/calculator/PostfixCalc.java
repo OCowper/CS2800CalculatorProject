@@ -6,6 +6,11 @@ package calculator;
  * @author zkac355
  */
 public class PostfixCalc implements CalcFace {
+  
+  /**
+   * Defines an instance of PostfixCalc.
+   */
+  public PostfixCalc() {}
 
   /**
    * Evaluates an expression given in postfix format.
