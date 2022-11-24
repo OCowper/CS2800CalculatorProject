@@ -5,8 +5,15 @@ package calculator;
  *
  * @author zkac355
  */
-public class InfixCalc {
+public class InfixCalc implements CalcFace {
 
+  
+  /**
+   * Evaluates an expression given in infix format.
+   *
+   * @param expression a string containing the expression to be evaluated in infix
+   * @return the answer as a float
+   */
   public Float evaluate(String expression) {
     return 11f;
   }

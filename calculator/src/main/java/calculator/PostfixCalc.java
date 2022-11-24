@@ -5,15 +5,15 @@ package calculator;
  *
  * @author zkac355
  */
-public class PostfixCalc {
+public class PostfixCalc implements CalcFace {
 
   /**
    * Evaluates an expression given in postfix format.
    *
-   * @param testExpression a string containing the expression to be evaluated in postfix
+   * @param expression a string containing the expression to be evaluated in postfix
    * @return the answer as a float
    */
-  public Float evaluate(String testExpression) {
+  public Float evaluate(String expression) {
     return 11f;
   }
 
