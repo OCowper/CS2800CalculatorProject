@@ -14,7 +14,7 @@ public class CalcModel implements Subject {
 
   /**
    * Returns the answer as a float.
-   * 
+   *
    * @return a float containing the calculated answer
    */
   public Float getAnswer() {

@@ -53,6 +53,11 @@ public class CalcModelTest {
     testModel.evaluate("7 * 11", Notation.POSTFIX);
     assertEquals(cont.getAnswer(), 77f, "evaluation a different expression should also work");
   }
-  
-
+  @Test // test 5. the trigger to create infix calculation methods.
+  void returnOtherinfix() {
+    CalcController cont = new CalcController();
+    testModel.addObserver(cont);
+    testModel.evaluate("7 * 11", Notation.INFIX);
+    assertEquals(cont.getAnswer(), 77f, "Evaluation should work with infix as well");
+  }
 }
