@@ -11,6 +11,10 @@ public class CalcModel implements Subject {
   private Float answer;
 
   private Observer obs;
+  
+  private PostfixCalc postCalculator;
+  
+  private InfixCalc inCalculator;
 
   /**
    * Returns the answer as a float.
@@ -23,12 +27,14 @@ public class CalcModel implements Subject {
 
   /**
    * Constructs a new instance of the model. It immediately adds the parsed in controller as an
-   * observer.
+   * observer, as well as instantiating instances of both controller types to be used.
    *
    * @param cont the controller to be added as an observer.
    */
   public CalcModel(CalcController cont) {
     addObserver(cont);
+    postCalculator = new PostfixCalc();
+    inCalculator = new InfixCalc();
   }
 
   /**
@@ -49,13 +55,13 @@ public class CalcModel implements Subject {
 
   // calculation with the postfix method - currently faked
   private float postfixCalc(String expression) {
-    return 11f;
+    return postCalculator.evaluate(expression);
 
   }
 
   // calculation with the infix method - currently faked
   private float infixCalc(String expression) {
-    return 11f;
+    return inCalculator.evaluate(expression);
 
   }
 
