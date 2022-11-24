@@ -7,4 +7,8 @@ package calculator;
  */
 public class InfixCalc {
 
+  public Float evaluate(String expression) {
+    return 11f;
+  }
+
 }
