@@ -14,6 +14,9 @@ public class PostfixTest {
   
   private PostfixCalc testCalculator;
   
+  /**
+   * Setups variables for the postfix testing.
+   */
   @BeforeEach
   public void setup() {
     testCalculator = new PostfixCalc();

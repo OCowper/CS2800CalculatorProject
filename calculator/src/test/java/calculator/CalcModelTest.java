@@ -15,6 +15,9 @@ public class CalcModelTest {
   private CalcModel testModel;
   private CalcController cont;
 
+  /**
+   * Setup for model testing.
+   */
   @BeforeEach
   public void setup() {
     cont = new CalcController();
@@ -28,31 +31,31 @@ public class CalcModelTest {
 
   @Test // test 2
   void testCalculateMethod() {
-    testModel.evaluate("5 + 6", Notation.POSTFIX);
-    assertEquals(testModel.getAnswer(), 11f, "5 + 6 should return 11");
-    testModel.evaluate("5 + 6", Notation.POSTFIX);
-    assertEquals(testModel.getAnswer(), 11f,
-        "the same should be true for postfix or infix");
+    testModel.evaluate("5 6 +", Notation.POSTFIX);
+    assertEquals(testModel.getAnswer(), 11f, "5 6 + should return 11");
+    testModel.evaluate("5 + 6", Notation.INFIX);
+    assertEquals(testModel.getAnswer(), 11f, "the same should be true for postfix or infix");
   } // test later refactored to work with evaluate now a void method.
 
   @Test // test 3
   void returnAnswer() {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
-    testModel.evaluate("5 + 6", Notation.POSTFIX);
+    testModel.evaluate("5 6 +", Notation.POSTFIX);
     testModel.notifyObserver(cont);
     assertEquals(cont.getAnswer(), 11f, "evaluating an expression should return to answer");
     testModel.evaluate("5 + 6", Notation.INFIX);
     assertEquals(cont.getAnswer(), 11f, "same should return for infix.");
   } // passed by adding the controller as an observer of the model and refactoring
-  
+
   @Test // test 4. The trigger for work on actual calculation methods
   void returnOther() {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
-    testModel.evaluate("7 * 11", Notation.POSTFIX);
+    testModel.evaluate("7 11 *", Notation.POSTFIX);
     assertEquals(cont.getAnswer(), 77f, "evaluation a different expression should also work");
   }
+
   @Test // test 5. the trigger to create infix calculation methods.
   void returnOtherinfix() {
     CalcController cont = new CalcController();

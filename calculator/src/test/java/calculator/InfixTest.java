@@ -3,7 +3,7 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 /**
- * Testing for the infix calculator
+ * Testing for the infix calculator.
  *
  * @author zkac355
  */
