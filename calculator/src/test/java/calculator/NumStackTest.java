@@ -64,5 +64,15 @@ public class NumStackTest {
     testNumStack.push(5f);
     assertEquals(testNumStack.top(), 5f, "top should be 5 after push");
   }
+  
+  @Test // test 8
+  void testTopTop() {
+    testNumStack.push(5f);
+    testNumStack.push(6f);
+    assertEquals(testNumStack.top(), 6f, "top of stack should be 6");
+    assertEquals(testNumStack.getSize(), 2, "size should still be 2");
+    testNumStack.pop();
+    assertEquals(testNumStack.top(), 5f, "after a pop top should be 5");
+  }
 
 }

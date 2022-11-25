@@ -64,6 +64,12 @@ public class NumStack {
    * @return the float on the top of the stack
    */
   public float top() {
-    return 5f;
+    float topReturn = 0f;
+    try {
+      topReturn = stackInst.top().getValue();
+    } catch (BadTypeException e) {
+      System.out.println("something's gone very wrong here");
+    }
+    return topReturn;
   }
 }
