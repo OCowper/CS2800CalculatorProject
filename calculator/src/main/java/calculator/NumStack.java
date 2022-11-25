@@ -46,7 +46,13 @@ public class NumStack {
    * @return the float on the stack top.
    */
   public float pop() {
-    return 5f;
-  }
+    float floatReturn = 0f;
+    try {
+      floatReturn = stackInst.pop().getValue();
+    } catch (BadTypeException e) {
+      System.out.println("something's gone very wrong here");
+    }
+    return floatReturn;
 
+  }
 }
