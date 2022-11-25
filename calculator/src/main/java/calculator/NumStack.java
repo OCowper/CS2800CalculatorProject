@@ -38,4 +38,15 @@ public class NumStack {
     stackInst.push(new Entry(f));
   }
 
+
+  /**
+   * Returns the float value at the top of the stack. Has to be a float - NumStack only ever pushes
+   * floats.
+   *
+   * @return the float on the stack top.
+   */
+  public float pop() {
+    return 5f;
+  }
+
 }

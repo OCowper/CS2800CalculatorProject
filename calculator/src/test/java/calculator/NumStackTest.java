@@ -36,5 +36,11 @@ public class NumStackTest {
     testNumStack.push(5f);
     assertEquals(testNumStack.getSize(), 1, "size should increment on push");
   }
+  
+  @Test // test 4
+  void testPop() {
+    testNumStack.push(5f);
+    assertEquals(testNumStack.pop(), 5f, "pop 5 and then push should be 5");
+  }
 
 }
