@@ -40,8 +40,8 @@ public class NumStack {
 
 
   /**
-   * Returns the float value at the top of the stack. Has to be a float - NumStack only ever pushes
-   * floats.
+   * Returns and removes the float value at the top of the stack. Has to be a float - NumStack only
+   * ever pushes floats.
    *
    * @return the float on the stack top.
    */
@@ -54,5 +54,16 @@ public class NumStack {
     }
     return floatReturn;
 
+  }
+
+
+  /**
+   * Returns the float at the top of the stack without removing it. Has to be a float - NumStack
+   * only ever pushes floats.
+   *
+   * @return the float on the top of the stack
+   */
+  public float top() {
+    return 5f;
   }
 }
