@@ -50,7 +50,13 @@ public class NumStackTest {
     testNumStack.push(6f);
     assertEquals(testNumStack.pop(), 6f, "first pop should be 6");
     assertEquals(testNumStack.pop(), 5f, "second pop should be 5");
+  }
 
+  @Test // test 6
+  void testPushPopSize() {
+    testNumStack.push(5f);
+    testNumStack.pop();
+    assertEquals(testNumStack.getSize(), 0, "push then pop should be 0");
   }
 
 }
