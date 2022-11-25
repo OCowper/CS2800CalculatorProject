@@ -7,4 +7,24 @@ package calculator;
  */
 public class NumStack {
 
+  private Stack stackInst;
+  
+  
+  /**
+   * Constructs an instance of NumStack containing a behavioural stack. 
+   */
+  public NumStack() {
+    stackInst = new Stack();
+  }
+
+
+  /**
+   * Returns the size of the stack instance.
+   *
+   * @return The current size of the stack being used.
+   */
+  public int getSize() {
+    return stackInst.getSize();
+  }
+
 }
