@@ -28,7 +28,13 @@ public class NumStackTest {
   
   @Test // test 2
   void testSize() {
-    assertEquals(testNumStack.getSize(), 0f, "size should be zero upon creation");
+    assertEquals(testNumStack.getSize(), 0, "size should be zero upon creation");
+  }
+  
+  @Test // test 3
+  void testPush() {
+    testNumStack.push(5f);
+    assertEquals(testNumStack.getSize(), 1, "size should increment on push");
   }
 
 }

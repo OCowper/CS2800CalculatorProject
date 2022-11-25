@@ -8,10 +8,10 @@ package calculator;
 public class NumStack {
 
   private Stack stackInst;
-  
-  
+
+
   /**
-   * Constructs an instance of NumStack containing a behavioural stack. 
+   * Constructs an instance of NumStack containing a behavioural stack.
    */
   public NumStack() {
     stackInst = new Stack();
@@ -25,6 +25,17 @@ public class NumStack {
    */
   public int getSize() {
     return stackInst.getSize();
+  }
+
+
+  /**
+   * Stores a float into the instance of stack. Achieved by translating whatever float entered into
+   * an instance of Entry.
+   *
+   * @param f the float to be stored
+   */
+  public void push(float f) {
+    stackInst.push(new Entry(f));
   }
 
 }
