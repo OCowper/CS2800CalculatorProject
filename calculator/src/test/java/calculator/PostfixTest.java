@@ -33,6 +33,11 @@ public class PostfixTest {
     assertEquals(testCalculator.evaluate(testExpression), 11f, "5 6 + should return 11");
   }
   
+  @Test // test 3
+  void testAdditionImp() {
+    String testExpression = "3 7 + ";
+    assertEquals(testCalculator.evaluate(testExpression), 10f, "3 7 + should return 10");
+  }
   
   
 

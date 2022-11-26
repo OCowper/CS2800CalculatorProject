@@ -1,7 +1,8 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.EmptyStackException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +51,7 @@ public class NumStackTest {
     testNumStack.push(6f);
     assertEquals(testNumStack.pop(), 6f, "first pop should be 6");
     assertEquals(testNumStack.pop(), 5f, "second pop should be 5");
-  }
+  } // pop never throws bad type as only numbers are ever pushed by numstack
 
   @Test // test 6
   void testPushPopSize() {
@@ -63,7 +64,7 @@ public class NumStackTest {
   void testTop() {
     testNumStack.push(5f);
     assertEquals(testNumStack.top(), 5f, "top should be 5 after push");
-  }
+  } // top never throws bad type as only numbers are ever pushed by numstack
   
   @Test // test 8
   void testTopTop() {
