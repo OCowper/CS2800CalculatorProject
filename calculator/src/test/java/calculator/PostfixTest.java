@@ -1,6 +1,8 @@
 package calculator;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,13 +44,20 @@ public class PostfixTest {
 
   @Test // test 4
   void testOtherOperator() {
-    String textExpression = "4 2 -";
-    assertEquals(testCalculator.evaluate(textExpression), 2f, "4 2 - should return 2");
-    textExpression = "4 3 *";
-    assertEquals(testCalculator.evaluate(textExpression), 12f, "4 3 * should return 12");
-    textExpression = "8 2 /";
-    assertEquals(testCalculator.evaluate(textExpression), 4f, "8 2 / should return 4");
+    String testExpression = "4 2 -";
+    assertEquals(testCalculator.evaluate(testExpression), 2f, "4 2 - should return 2");
+    testExpression = "4 3 *";
+    assertEquals(testCalculator.evaluate(testExpression), 12f, "4 3 * should return 12");
+    testExpression = "8 2 /";
+    assertEquals(testCalculator.evaluate(testExpression), 4f, "8 2 / should return 4");
   } // now checks the operator and converts it to the symbol enum, then uses it in calculation.
+
+  @Test // test 5
+  void testInvalid() {
+    String testExpression = "4 2";
+    assertThrows(InvalidExpressionException.class, () -> testCalculator.evaluate(testExpression),
+        "expression without operator should throw");
+  }
 
 
 }
