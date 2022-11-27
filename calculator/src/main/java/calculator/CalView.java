@@ -62,9 +62,9 @@ public class CalView implements ViewInterface, Subject {
 
   @Override
   public void notifyObserver(Observer obs) {
-    obs.update(expression, type);
+      obs.update(expression, type);
+    }
 
-  }
 
   ///////////////////////////////////////////////////////////// FXML STARTS HERE
 
@@ -101,7 +101,6 @@ public class CalView implements ViewInterface, Subject {
     expression = getExpression();
     notifyObserver(obs);
     setAnswer(answer);
-    // the answer field has already been updated with the calculated result by controller
   }
 
   @FXML

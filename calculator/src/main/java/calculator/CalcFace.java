@@ -12,7 +12,8 @@ public interface CalcFace {
    *
    * @param expression the expression to be evaluated
    * @return returns the answer to the expression
+   * @throws InvalidExpressionException if the expression is wrong
    */
-  public Float evaluate(String expression);
+  public Float evaluate(String expression) throws InvalidExpressionException;
 
 }

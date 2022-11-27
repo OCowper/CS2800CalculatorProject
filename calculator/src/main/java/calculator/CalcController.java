@@ -60,9 +60,12 @@ public class CalcController implements Observer {
   /**
    * This version of update is used to collect information from the view, containing the expression
    * and the notation. Will only calculate if a new expression is submitted.
+   *
+   * @throws InvalidExpressionException if an invalid expression is submitted
    */
   @Override
   public void update(String expression, Notation calcType) {
+   
     String curExpression = this.expression;
     this.expression = expression;
     this.type = calcType;
@@ -83,7 +86,11 @@ public class CalcController implements Observer {
   // calls the model to calculate the answer and then returns it to the view. the answer field is
   // updated by model using observer.
   private void calculate() {
-    model.evaluate(expression, type);
+    try {
+      model.evaluate(expression, type);
+    } catch (InvalidExpressionException e) {
+      returnAnswer(e.getMessage());
+    }
     returnAnswer(Float.toString(answer));
   }
 

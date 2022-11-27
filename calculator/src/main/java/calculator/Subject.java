@@ -20,7 +20,9 @@ public interface Subject {
    * Notify observers of a change in data.
    *
    * @param obs the object to be notified
+   *
+   * @throws InvalidExpressionException if an incorrect expression has been submitted
    */
-  public void notifyObserver(Observer obs);
+  public void notifyObserver(Observer obs) throws InvalidExpressionException;
 
 }

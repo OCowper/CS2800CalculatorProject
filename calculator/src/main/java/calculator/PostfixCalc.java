@@ -22,8 +22,9 @@ public class PostfixCalc implements CalcFace {
    *
    * @param expression a string containing the expression to be evaluated in postfix
    * @return the answer as a float
+   * @throws InvalidExpressionException if the expression is invalid
    */
-  public Float evaluate(String expression) {
+  public Float evaluate(String expression) throws InvalidExpressionException {
     expression = expression.replaceAll("\\s", ""); // removes all spaces standardizing handling.
     char curChar;
     float leftExpression = 0;
@@ -39,6 +40,9 @@ public class PostfixCalc implements CalcFace {
         leftExpression = numStackInst.pop();
         operator = strToSymb(curChar);
       }
+    }
+    if (operator == Symbol.INVALID) {
+      throw new InvalidExpressionException("Invalid Expression");
     }
     return arithmetic(leftExpression, rightExpression, operator);
   }
