@@ -88,10 +88,11 @@ public class CalcController implements Observer {
   private void calculate() {
     try {
       model.evaluate(expression, type);
+      returnAnswer(Float.toString(answer));
     } catch (InvalidExpressionException e) {
       returnAnswer(e.getMessage());
     }
-    returnAnswer(Float.toString(answer));
+
   }
 
 }

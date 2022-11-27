@@ -62,8 +62,8 @@ public class CalView implements ViewInterface, Subject {
 
   @Override
   public void notifyObserver(Observer obs) {
-      obs.update(expression, type);
-    }
+    obs.update(expression, type);
+  }
 
 
   ///////////////////////////////////////////////////////////// FXML STARTS HERE

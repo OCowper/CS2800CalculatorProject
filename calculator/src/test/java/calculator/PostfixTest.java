@@ -53,10 +53,17 @@ public class PostfixTest {
   } // now checks the operator and converts it to the symbol enum, then uses it in calculation.
 
   @Test // test 5
-  void testInvalid() {
+  void testNoOperand() {
     String testExpression = "4 2";
     assertThrows(InvalidExpressionException.class, () -> testCalculator.evaluate(testExpression),
         "expression without operator should throw");
+  }
+
+  @Test // test 6
+  void testWrongType() {
+    String testExpression = "1 + 2";
+    assertThrows(InvalidExpressionException.class, () -> testCalculator.evaluate(testExpression),
+        "infix expression should throw");
   }
 
 

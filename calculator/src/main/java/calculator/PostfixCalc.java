@@ -36,13 +36,18 @@ public class PostfixCalc implements CalcFace {
         numStackInst.push(((float) (curChar)) - 48);
         // java converts numeric chars to their ascii value, so take off 48 to get the actual number
       } else {
+        if (numStackInst.getSize() < 2) {
+          numStackInst = new NumStack(); // clears the stack in case of an exception
+          throw new InvalidExpressionException("Invalid Expression - Must be postfix");
+        }
         rightExpression = numStackInst.pop();
         leftExpression = numStackInst.pop();
         operator = strToSymb(curChar);
       }
     }
     if (operator == Symbol.INVALID) {
-      throw new InvalidExpressionException("Invalid Expression");
+      numStackInst = new NumStack();
+      throw new InvalidExpressionException("Invalid Expression - No operator submitted");
     }
     return arithmetic(leftExpression, rightExpression, operator);
   }
