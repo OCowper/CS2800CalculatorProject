@@ -35,17 +35,16 @@ public class PostfixCalc implements CalcFace {
       if (Character.isDigit(curChar)) {
         fullNumber = fullNumber + curChar;
         // upon a space, adds the currently collated multi-digit number
-      } else if (Character.isWhitespace(curChar)) {
-        if (fullNumber == "") {
-        } else {
-          numStackInst.push(Float.parseFloat(fullNumber));
-          fullNumber = ""; // resets back to empty to recieve the next number
-        }
-      } else { // if a symbol
-        if (numStackInst.getSize() < 2) {
-          numStackInst = new NumStack(); // clears the stack in case of an exception
-          throw new InvalidExpressionException("Invalid Expression - Must be postfix");
-        }
+      } else if (Character.isWhitespace(curChar) && fullNumber == "") {
+        // if the number total is empty, skips
+      } else if (Character.isWhitespace(curChar) && fullNumber != "") {
+        numStackInst.push(Float.parseFloat(fullNumber));
+        fullNumber = ""; // resets back to empty to receive the next number
+      } else if (numStackInst.getSize() < 2) { // if a symbol
+
+        numStackInst = new NumStack(); // clears the stack in case of an exception
+        throw new InvalidExpressionException("Invalid Expression - Must be postfix");
+      } else {
         rightExpression = numStackInst.pop();
         leftExpression = numStackInst.pop();
         operator = strToSymb(curChar);
@@ -59,7 +58,7 @@ public class PostfixCalc implements CalcFace {
   }
 
   // takes in a char and converts it into one of the possible operators
-  // brackects not required as postfix doesn't use them.
+  // brackets not required as postfix doesn't use them.
   private Symbol strToSymb(char strSymbol) {
     switch (strSymbol) {
       case ('+'):
