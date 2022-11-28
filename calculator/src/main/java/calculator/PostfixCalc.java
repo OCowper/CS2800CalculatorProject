@@ -28,7 +28,9 @@ public class PostfixCalc implements CalcFace {
    *         by 0, wrong order etc.
    */
   public Float evaluate(String expression) throws InvalidExpressionException {
-    
+
+    String errorString = "Invalid Expression - ";
+    boolean valid = true;
     char curChar;
     String fullNumber = "";
     float leftExpression = 0;
@@ -40,11 +42,13 @@ public class PostfixCalc implements CalcFace {
       curChar = expression.charAt(curPos);
 
       if (curChar == '.' && curPos == expression.length() - 1) {
-        throw new InvalidExpressionException("decimal point error");
+        valid = false;
+        errorString = errorString + "decimal point error ";
         // if a decimal point is the last character
 
       } else if (curChar == '.' && Character.isWhitespace(expression.charAt(curPos + 1))) {
-        throw new InvalidExpressionException("decimal point error");
+        valid = false;
+        errorString = errorString + "decimal point error ";
         // if a decimal point then a space
 
       } else if (Character.isDigit(curChar) || curChar == '.') {
@@ -63,27 +67,38 @@ public class PostfixCalc implements CalcFace {
           rightExpression = numStackInst.pop(); // throws if there aren't enough values on stack
           leftExpression = numStackInst.pop();
         } catch (EmptyStackException e) {
-          throw new InvalidExpressionException("Invalid Expression - must be postfix");
+          valid = false;
+          errorString = errorString + "Not enough numbers ";
         }
 
         operator = strToSymb(curChar);
         if (operator == Symbol.INVALID) { // catches characters not any of the four operators.
-          throw new InvalidExpressionException("Invalid Expression - Incorrect operator submitted");
+          valid = false;
+          errorString = errorString + "Incorrect operator ";
         }
 
         numStackInst.push(arithmetic(leftExpression, rightExpression, operator));
         // pushes the result onto the stack in case more calculations are to follow
         if (curPos == expression.length() - 1) {
-          return numStackInst.pop();
+          if (valid) {
+            return numStackInst.pop();
+          } else {
+            throw new InvalidExpressionException(errorString);
+          }
         }
       }
     }
 
     if (operator == Symbol.INVALID) {
       // checks for expressions without any operator
-      throw new InvalidExpressionException("Invalid Expression - No Operator submitted");
+      valid = false;
+      errorString = errorString + "No Operator submitted ";
     }
-    return numStackInst.pop();
+    if (valid) {
+      return numStackInst.pop();
+    } else {
+      throw new InvalidExpressionException(errorString);
+    }
   }
 
   // takes in a char and converts it into one of the possible operators
