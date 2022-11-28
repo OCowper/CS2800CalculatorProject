@@ -80,4 +80,11 @@ public class PostfixTest {
         "calculator should be able to deal with doublespacing or spaces at the start or end");
   }
 
+  @Test // test 9
+  void testDivide0() {
+    String testExpression = "5 0 /";
+    assertThrows(InvalidExpressionException.class, () -> testCalculator.evaluate(testExpression),
+        "divide by 0 should throw");
+  }
+
 }

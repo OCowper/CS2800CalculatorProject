@@ -75,7 +75,8 @@ public class PostfixCalc implements CalcFace {
   }
 
   // dependent on the operator chooses a sum and returns it.
-  private float arithmetic(float leftExpression, float rightExpression, Symbol operator) {
+  private float arithmetic(float leftExpression, float rightExpression, Symbol operator)
+      throws InvalidExpressionException {
     switch (operator) {
       case PLUS:
         return leftExpression + rightExpression;
@@ -84,9 +85,12 @@ public class PostfixCalc implements CalcFace {
       case TIMES:
         return leftExpression * rightExpression;
       case DIVIDE:
+        if (rightExpression == 0f) {
+          throw new InvalidExpressionException("Divide by 0 Error");
+        }
         return leftExpression / rightExpression;
       default:
-        return -1;
+        return -1; // evaluate always throws if symbol is not one of the four
     }
   }
 
