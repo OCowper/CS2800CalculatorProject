@@ -36,8 +36,11 @@ public class PostfixCalc implements CalcFace {
         fullNumber = fullNumber + curChar;
         // upon a space, adds the currently collated multi-digit number
       } else if (Character.isWhitespace(curChar)) {
-        numStackInst.push(Float.parseFloat(fullNumber));
-        fullNumber = ""; // resets back to empty to recieve the next number
+        if (fullNumber == "") {
+        } else {
+          numStackInst.push(Float.parseFloat(fullNumber));
+          fullNumber = ""; // resets back to empty to recieve the next number
+        }
       } else { // if a symbol
         if (numStackInst.getSize() < 2) {
           numStackInst = new NumStack(); // clears the stack in case of an exception

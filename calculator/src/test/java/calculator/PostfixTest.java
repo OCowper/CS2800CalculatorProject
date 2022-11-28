@@ -73,4 +73,11 @@ public class PostfixTest {
         "calculator should be able to handle mutiple digits");
   }
 
+  @Test // test 8
+  void testSpaceError() throws InvalidExpressionException {
+    String testExpression = " 3  5   + ";
+    assertEquals(testCalculator.evaluate(testExpression), 8f,
+        "calculator should be able to deal with doublespacing or spaces at the start or end");
+  }
+
 }
