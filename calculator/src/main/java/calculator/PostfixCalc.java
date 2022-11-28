@@ -29,13 +29,21 @@ public class PostfixCalc implements CalcFace {
    */
   public Float evaluate(String expression) throws InvalidExpressionException {
 
+    // concatenated whenever an invalid string is detected
     String errorString = "Invalid Expression - ";
+    // flag - set to false if an invalid string is detected
     boolean valid = true;
+    // keeps track of the current character of the expression being handled
     char curChar;
+    // string concatenated with any acceptable numeric to create multi-digit numbers
     String fullNumber = "";
+    // stores the number in the LHS
     float leftExpression = 0;
+    // stores the number in the RHS
     float rightExpression = 0;
+    // stored the operator - if INVALID by the end, no operator has been used
     Symbol operator = Symbol.INVALID;
+    // resets the stack at the start of a new calculation
     numStackInst = new NumStack();
     for (int curPos = 0; curPos < expression.length(); curPos++) {
 
@@ -44,12 +52,12 @@ public class PostfixCalc implements CalcFace {
       if (curChar == '.' && curPos == expression.length() - 1) {
         valid = false;
         errorString = errorString + "decimal point error ";
-        // if a decimal point is the last character
+        // if a decimal point is the last character sets an error
 
       } else if (curChar == '.' && Character.isWhitespace(expression.charAt(curPos + 1))) {
         valid = false;
         errorString = errorString + "decimal point error ";
-        // if a decimal point then a space
+        // if a decimal point then a space sets an error
 
       } else if (Character.isDigit(curChar) || curChar == '.') {
         fullNumber = fullNumber + curChar;
@@ -57,6 +65,7 @@ public class PostfixCalc implements CalcFace {
 
       } else if (Character.isWhitespace(curChar) && fullNumber == "") {
         // if the number total is empty, skips
+        fullNumber = "";
 
       } else if (Character.isWhitespace(curChar) && fullNumber != "") {
         numStackInst.push(Float.parseFloat(fullNumber));
@@ -83,7 +92,7 @@ public class PostfixCalc implements CalcFace {
           if (valid) {
             return numStackInst.pop();
           } else {
-            throw new InvalidExpressionException(errorString);
+            throw new InvalidExpressionException(errorString); // if an error has ever been detected
           }
         }
       }
@@ -131,10 +140,11 @@ public class PostfixCalc implements CalcFace {
       case DIVIDE:
         if (rightExpression == 0f) {
           throw new InvalidExpressionException("Divide by 0 Error");
-        }
+        } // divide by 0 expressions are thrown.
         return leftExpression / rightExpression;
       default:
-        return -1; // evaluate always throws if symbol is not one of the four
+        return -1; // evaluate always throws if symbol is not one of the four so this shouldn't
+                   // happen.
     }
   }
 

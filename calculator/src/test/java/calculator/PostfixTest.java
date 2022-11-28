@@ -110,4 +110,12 @@ public class PostfixTest {
     }
   }
 
+  @Test // test 13
+  void testLarge() throws InvalidExpressionException {
+    String testExpression = "1 ";
+    for (int i = 0; i < 100; i++) {
+      testExpression = testExpression + "1 + ";
+    }
+    assertEquals(testCalculator.evaluate(testExpression), 101f, "large expressions should work");
+  }
 }
