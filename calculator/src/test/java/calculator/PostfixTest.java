@@ -87,4 +87,17 @@ public class PostfixTest {
         "divide by 0 should throw");
   }
 
+  @Test // test 10
+  void testLargeExp() throws InvalidExpressionException {
+    String testExpression = "5 2 + 3 -";
+    assertEquals(testCalculator.evaluate(testExpression), 4f,
+        "should be able to handle large expressions");
+  }
+  
+  @Test // test 11
+  void testDecimal() throws InvalidExpressionException {
+    String testExpression = "0.1 + 5";
+    assertEquals(testCalculator.evaluate(testExpression), 5.1f, "should be able to handle decimal numbers");
+  }
+
 }
