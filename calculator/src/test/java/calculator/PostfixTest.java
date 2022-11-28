@@ -93,11 +93,21 @@ public class PostfixTest {
     assertEquals(testCalculator.evaluate(testExpression), 4f,
         "should be able to handle large expressions");
   }
-  
+
   @Test // test 11
   void testDecimal() throws InvalidExpressionException {
-    String testExpression = "0.1 + 5";
-    assertEquals(testCalculator.evaluate(testExpression), 5.1f, "should be able to handle decimal numbers");
+    String testExpression = "0.1 5 +";
+    assertEquals(testCalculator.evaluate(testExpression), 5.1f,
+        "should be able to handle decimal numbers");
+  }
+
+  @Test // test 12
+  void testRepeats() throws InvalidExpressionException {
+    String testExpression = "2 3 + 5 +";
+    for (int i = 0; i < 100; i++) {
+      assertEquals(testCalculator.evaluate(testExpression), 10f,
+          "make sure previous calculations do not effect future ones");
+    }
   }
 
 }
