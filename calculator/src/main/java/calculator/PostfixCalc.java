@@ -25,17 +25,20 @@ public class PostfixCalc implements CalcFace {
    * @throws InvalidExpressionException if the expression is invalid
    */
   public Float evaluate(String expression) throws InvalidExpressionException {
-    expression = expression.replaceAll("\\s", ""); // removes all spaces standardizing handling.
     char curChar;
+    String fullNumber = "";
     float leftExpression = 0;
     float rightExpression = 0;
     Symbol operator = Symbol.INVALID;
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
       if (Character.isDigit(curChar)) {
-        numStackInst.push(((float) (curChar)) - 48);
-        // java converts numeric chars to their ascii value, so take off 48 to get the actual number
-      } else {
+        fullNumber = fullNumber + curChar;
+        // upon a space, adds the currently collated multi-digit number
+      } else if (Character.isWhitespace(curChar)) {
+        numStackInst.push(Float.parseFloat(fullNumber));
+        fullNumber = ""; // resets back to empty to recieve the next number
+      } else { // if a symbol
         if (numStackInst.getSize() < 2) {
           numStackInst = new NumStack(); // clears the stack in case of an exception
           throw new InvalidExpressionException("Invalid Expression - Must be postfix");
@@ -46,7 +49,7 @@ public class PostfixCalc implements CalcFace {
       }
     }
     if (operator == Symbol.INVALID) {
-      numStackInst = new NumStack();
+      numStackInst = new NumStack(); // clears the stack in case of an exception
       throw new InvalidExpressionException("Invalid Expression - No operator submitted");
     }
     return arithmetic(leftExpression, rightExpression, operator);

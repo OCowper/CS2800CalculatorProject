@@ -37,7 +37,7 @@ public class PostfixTest {
 
   @Test // test 3
   void testAdditionImp() throws InvalidExpressionException {
-    String testExpression = "3 7 + ";
+    String testExpression = "3 7 +";
     assertEquals(testCalculator.evaluate(testExpression), 10f, "3 7 + should return 10");
   } // passed by implementing basic string handling. Only works with addition and single digits so
   // far.
@@ -64,7 +64,13 @@ public class PostfixTest {
     String testExpression = "1 + 2";
     assertThrows(InvalidExpressionException.class, () -> testCalculator.evaluate(testExpression),
         "infix expression should throw");
-  }
+  } // this test also means that any prefix expressions are thrown
 
+  @Test // test 7
+  void testLargeNumers() throws InvalidExpressionException {
+    String testExpression = "10 20 *";
+    assertEquals(testCalculator.evaluate(testExpression), 200f,
+        "calculator should be able to handle mutiple digits");
+  }
 
 }
