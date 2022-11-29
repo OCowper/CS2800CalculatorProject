@@ -57,17 +57,19 @@ public class PostfixCalc implements CalcFace {
       } else if (curChar == '.' && !Character.isDigit(expression.charAt(curPos + 1))) {
         valid = false;
         errorString = errorString + "decimal point error ";
-        // if a decimal point then a space sets an error
+        // if a decimal point then anything not a number sets an error
 
       } else if (Character.isDigit(curChar) || curChar == '.') {
         fullNumber = fullNumber + curChar;
-        // upon a space, adds the currently collated multi-digit number
+        // concatenates the current digit to a totaller string.
+
 
       } else if (Character.isWhitespace(curChar) && fullNumber == "") {
         // if the number total is empty, skips
         fullNumber = "";
 
       } else if (Character.isWhitespace(curChar) && fullNumber != "") {
+        // upon a space, adds the currently collated multi-digit number
         numStackInst.push(Float.parseFloat(fullNumber));
         fullNumber = ""; // resets back to empty to receive the next number
 
