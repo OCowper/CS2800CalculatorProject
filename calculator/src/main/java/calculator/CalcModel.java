@@ -48,8 +48,9 @@ public class CalcModel implements Subject {
    *
    * @param expression the expression to be calculated as a string
    * @param type an enum containing either postfix or infix
+   * @throws InvalidExpressionException if an incorrect expression is submitted
    */
-  public void evaluate(String expression, Notation type) {
+  public void evaluate(String expression, Notation type) throws InvalidExpressionException {
     if (type == Notation.INFIX) {
       answer = infixCalc(expression);
     } else {
@@ -59,7 +60,7 @@ public class CalcModel implements Subject {
   }
 
   // calculation with the postfix method - currently faked
-  private float postfixCalc(String expression) {
+  private float postfixCalc(String expression) throws InvalidExpressionException {
     return postCalculator.evaluate(expression);
 
   }

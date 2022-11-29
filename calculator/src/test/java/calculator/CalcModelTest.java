@@ -30,7 +30,7 @@ public class CalcModelTest {
   } // refactored after test 3 to work with new constructor
 
   @Test // test 2
-  void testCalculateMethod() {
+  void testCalculateMethod() throws InvalidExpressionException {
     testModel.evaluate("5 6 +", Notation.POSTFIX);
     assertEquals(testModel.getAnswer(), 11f, "5 6 + should return 11");
     testModel.evaluate("5 + 6", Notation.INFIX);
@@ -38,7 +38,7 @@ public class CalcModelTest {
   } // test later refactored to work with evaluate now a void method.
 
   @Test // test 3
-  void returnAnswer() {
+  void returnAnswer() throws InvalidExpressionException {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
     testModel.evaluate("5 6 +", Notation.POSTFIX);
@@ -49,7 +49,7 @@ public class CalcModelTest {
   } // passed by adding the controller as an observer of the model and refactoring
 
   @Test // test 4. The trigger for work on actual calculation methods
-  void returnOther() {
+  void returnOther() throws InvalidExpressionException {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
     testModel.evaluate("7 11 *", Notation.POSTFIX);
@@ -57,7 +57,7 @@ public class CalcModelTest {
   }
 
   @Test // test 5. the trigger to create infix calculation methods.
-  void returnOtherinfix() {
+  void returnOtherinfix() throws InvalidExpressionException {
     CalcController cont = new CalcController();
     testModel.addObserver(cont);
     testModel.evaluate("7 * 11", Notation.INFIX);

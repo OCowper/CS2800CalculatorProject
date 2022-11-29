@@ -32,13 +32,13 @@ class StackTest {
 
   @Test // test 2
   void testSize() {
-    assertEquals(testStack.size(), 0, "test if the size is 0 on creation");
+    assertEquals(testStack.getSize(), 0, "test if the size is 0 on creation");
   } // passed by faking a size method
 
   @Test // test 3
   void testPush() {
     testStack.push(new Entry(3.0f));
-    assertEquals(testStack.size(), 1, "test if size increments on push");
+    assertEquals(testStack.getSize(), 1, "test if size increments on push");
   } // passed by removing faking from size, and incrementing a private size field on push
   // refactored after test 17 to push entry instead of primitive
 
@@ -60,7 +60,7 @@ class StackTest {
   void testDynaSize() {
     testStack.push(new Entry(3.0f));
     testStack.pop();
-    assertEquals(testStack.size(), 0, "push then pop on empty stack should mean size 0");
+    assertEquals(testStack.getSize(), 0, "push then pop on empty stack should mean size 0");
   } // passed by adding a decrement to pop
   // refactored after test 17 to push entry instead of primitive
 
@@ -76,7 +76,7 @@ class StackTest {
   void testMultiPushSize() {
     testStack.push(new Entry(3.0f));
     testStack.push(new Entry(4.0f));
-    assertEquals(testStack.size(), 2, "2 pushes should mean size 2");
+    assertEquals(testStack.getSize(), 2, "2 pushes should mean size 2");
   } // already passes - demonstrates size works with multiple values
   // refactored after test 17 to push entry instead of primitive
 
@@ -86,7 +86,7 @@ class StackTest {
     testStack.push(new Entry(4.0f));
     assertEquals(testStack.pop(), new Entry(4.0f), "push 3 then 4 should pop 4");
     assertEquals(testStack.pop(), new Entry(3.0f), "second pop should be 3");
-    assertEquals(testStack.size(), 0, "size should be 0 after 2 pop and push");
+    assertEquals(testStack.getSize(), 0, "size should be 0 after 2 pop and push");
   } // passed by moving the first value up in the array by 1 when the second is pushed
   // refactored after test 17 to push entry instead of primitive
 
@@ -113,7 +113,7 @@ class StackTest {
   void testTopSize() {
     testStack.push(new Entry(3.0f));
     assertEquals(testStack.top(), new Entry(3.0f), "top of stack should be 3");
-    assertEquals(testStack.size(), 1, "size should be 1 - item should remain on stack");
+    assertEquals(testStack.getSize(), 1, "size should be 1 - item should remain on stack");
   } // passed by returning the top value instead of popping
   // refactored after test 17 to push entry instead of primitive
 

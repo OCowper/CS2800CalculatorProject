@@ -25,7 +25,7 @@ public class Stack {
    *
    * @return returns the size of the stack
    */
-  public int size() {
+  public int getSize() {
     return size;
   }
 
