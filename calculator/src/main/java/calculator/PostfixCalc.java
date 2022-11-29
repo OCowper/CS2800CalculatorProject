@@ -54,7 +54,7 @@ public class PostfixCalc implements CalcFace {
         errorString = errorString + "decimal point error ";
         // if a decimal point is the last character sets an error
 
-      } else if (curChar == '.' && Character.isWhitespace(expression.charAt(curPos + 1))) {
+      } else if (curChar == '.' && !Character.isDigit(expression.charAt(curPos + 1))) {
         valid = false;
         errorString = errorString + "decimal point error ";
         // if a decimal point then a space sets an error
