@@ -5,6 +5,7 @@
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -20,15 +21,30 @@
     <RowConstraints maxHeight="85.0" minHeight="10.0" prefHeight="85.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Button fx:id="calButton" mnemonicParsing="false" onAction="#isPressed" text="Calculate" />
+      <Button fx:id="calButton" mnemonicParsing="false" onAction="#isPressed" text="Calculate">
+         <tooltip>
+            <Tooltip text="Press to calculate" />
+         </tooltip></Button>
       <RadioButton fx:id="postfixSel" mnemonicParsing="false" onAction="#postIsSelected" selected="true" text="Postfix" GridPane.rowIndex="2">
          <toggleGroup>
             <ToggleGroup fx:id="fixGroup" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="infixSel" mnemonicParsing="false" onAction="#inIsSelected" text="Infix" toggleGroup="$fixGroup" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+         </toggleGroup>
+         <tooltip>
+            <Tooltip text="Select postfix notation" />
+         </tooltip></RadioButton>
+      <RadioButton fx:id="infixSel" mnemonicParsing="false" onAction="#inIsSelected" text="Infix" toggleGroup="$fixGroup" GridPane.columnIndex="1" GridPane.rowIndex="2">
+         <tooltip>
+            <Tooltip text="Select infix notation" />
+         </tooltip></RadioButton>
       <Label text="Answer:" GridPane.rowIndex="1" />
       <Label GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <Label fx:id="answerLabel" text="______" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <TextField fx:id="calEntry" promptText="Enter Calculation" GridPane.columnIndex="1" />
+      <Label fx:id="answerLabel" text="______" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <tooltip>
+            <Tooltip text="Your answer" />
+         </tooltip></Label>
+      <TextField fx:id="calEntry" promptText="Enter Calculation" GridPane.columnIndex="1">
+         <tooltip>
+            <Tooltip text="Enter an expression here" />
+         </tooltip></TextField>
    </children>
 </GridPane>
