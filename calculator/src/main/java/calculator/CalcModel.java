@@ -66,7 +66,7 @@ public class CalcModel implements Subject {
   }
 
   // calculation with the infix method - currently faked
-  private float infixCalc(String expression) {
+  private float infixCalc(String expression) throws InvalidExpressionException {
     return inCalculator.evaluate(expression);
 
   }
