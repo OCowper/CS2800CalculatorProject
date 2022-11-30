@@ -1,4 +1,24 @@
-This is Release Version 0.1
+Current:
+
+Release Version 0.2:
+
+Added full functionality for postfix calculations - postfix must be selected by the user. Infix is still faked
+
+Added tooltips to all GUI elements to increase accessability.
+
+Added error messages for when an invalid expression is inputted
+
+This release is to collect client feedback on error messages, tooltips, and expression input
+
+
+
+
+
+
+Past Release Notes:
+
+
+Release Version 0.1
 
 The only thing currently implemented from a user perspective is the GUI.
 
