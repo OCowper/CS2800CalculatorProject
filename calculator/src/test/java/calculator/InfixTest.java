@@ -57,5 +57,11 @@ public class InfixTest {
     String testExpression = "5 6 +";
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
+  
+  @Test // test 7
+  void testLargeNumbers() throws InvalidExpressionException {
+    String testExpression = "100 - 50";
+    assertEquals(testCalc.evaluate(testExpression), 50f, "100 - 50 should be 50");
+  } // the calculator should be able to handle mutiple digits
 
 }

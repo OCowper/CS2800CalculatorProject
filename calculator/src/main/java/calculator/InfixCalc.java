@@ -30,12 +30,16 @@ public class InfixCalc implements CalcFace {
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
       if (Character.isDigit(curChar)) {
-        stringTotal = stringTotal + curChar + " ";
-      } else if (!Character.isWhitespace(curChar) && curPos == expression.length() - 1) {
+        stringTotal = stringTotal + curChar;
+      
+      } else if (Character.isWhitespace(curChar)) {
+        stringTotal = stringTotal + " ";
+
+      } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
         throw new InvalidExpressionException("Must be in infix");
         // catches expressions ending in an operator
-
-      } else if (!Character.isWhitespace(curChar)) {
+      
+      } else {
         curOp = curChar;
       }
     }
@@ -43,6 +47,6 @@ public class InfixCalc implements CalcFace {
     if (curOp == 'N') {
       throw new InvalidExpressionException("No operator submitted");
     }
-    return postCalculator.evaluate(stringTotal + curOp);
+    return postCalculator.evaluate(stringTotal + " " + curOp);
   }
 }
