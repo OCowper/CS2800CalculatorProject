@@ -1,7 +1,6 @@
 package calculator;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -44,12 +43,6 @@ public class InfixTest {
   void testOtherOp() throws InvalidExpressionException {
     String testExpression = "1 * 9";
     assertEquals(testCalc.evaluate(testExpression), 9f, "1 * 9 should return 9");
-  }
-  
-  @Test // test 5
-  void testNoOp() {
-    String testExpression = "5 6";
-    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
 
 }
