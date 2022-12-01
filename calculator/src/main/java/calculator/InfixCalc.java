@@ -31,12 +31,15 @@ public class InfixCalc implements CalcFace {
       curChar = expression.charAt(curPos);
       if (Character.isDigit(curChar)) {
         stringTotal = stringTotal + curChar + " ";
-      } else {
-        if (!Character.isWhitespace(curChar)) {
-          curOp = curChar;
-        }
+      } else if (!Character.isWhitespace(curChar) && curPos == expression.length() - 1) {
+        throw new InvalidExpressionException("Must be in infix");
+        // catches expressions ending in an operator
+
+      } else if (!Character.isWhitespace(curChar)) {
+        curOp = curChar;
       }
     }
+
     if (curOp == 'N') {
       throw new InvalidExpressionException("No operator submitted");
     }

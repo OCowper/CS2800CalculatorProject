@@ -51,5 +51,11 @@ public class InfixTest {
     String testExpression = "5 6";
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
+  
+  @Test // test 6
+  void testWrongType() {
+    String testExpression = "5 6 +";
+    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
+  }
 
 }
