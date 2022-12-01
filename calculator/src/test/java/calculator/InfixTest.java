@@ -33,35 +33,42 @@ public class InfixTest {
     String testExpression = "5 + 6";
     assertEquals(testCalc.evaluate(testExpression), 11f, "5 + 6 should return 11");
   }
-  
+
   @Test // test 3
   void testOtherAddition() throws InvalidExpressionException {
     String testExpresson = "1 + 9";
     assertEquals(testCalc.evaluate(testExpresson), 10f, "1 + 9 should return 10");
   }
-  
+
   @Test // test 4
   void testOtherOp() throws InvalidExpressionException {
     String testExpression = "1 * 9";
     assertEquals(testCalc.evaluate(testExpression), 9f, "1 * 9 should return 9");
   }
-  
+
   @Test // test 5
   void testNoOp() {
     String testExpression = "5 6";
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
-  
+
   @Test // test 6
   void testWrongType() {
     String testExpression = "5 6 +";
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
-  
+
   @Test // test 7
   void testLargeNumbers() throws InvalidExpressionException {
     String testExpression = "100 - 50";
     assertEquals(testCalc.evaluate(testExpression), 50f, "100 - 50 should be 50");
   } // the calculator should be able to handle mutiple digits
+
+  @Test // test 8
+  void testSpaceError() throws InvalidExpressionException {
+    String testExpression = " 100 +   6  ";
+    assertEquals(testCalc.evaluate(testExpression), 106f,
+        "extra spaces should not affect the calculator");
+  }
 
 }
