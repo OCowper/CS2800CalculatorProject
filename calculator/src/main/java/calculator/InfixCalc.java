@@ -37,6 +37,9 @@ public class InfixCalc implements CalcFace {
         }
       }
     }
+    if (curOp == 'N') {
+      throw new InvalidExpressionException("No operator submitted");
+    }
     return postCalculator.evaluate(stringTotal + curOp);
   }
 }
