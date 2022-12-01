@@ -36,7 +36,13 @@ public class InfixTest {
   @Test // test 3
   void testOtherAddition() throws InvalidExpressionException {
     String testExpresson = "1 + 9";
-    assertEquals(testCalc.evaluate(testExpresson), 10f, "1 + 9 sould return 10");
+    assertEquals(testCalc.evaluate(testExpresson), 10f, "1 + 9 should return 10");
+  }
+  
+  @Test // test 4
+  void testOtherOp() throws InvalidExpressionException {
+    String testExpression = "1 * 9";
+    assertEquals(testCalc.evaluate(testExpression), 9f, "1 * 9 should return 9");
   }
 
 }
