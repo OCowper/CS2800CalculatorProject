@@ -26,6 +26,7 @@ public class InfixCalc implements CalcFace {
   public Float evaluate(String expression) throws InvalidExpressionException {
     char curChar;
     String stringTotal = "";
+    String finalExpression = "";
     char curOp = 'N';
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
@@ -37,6 +38,12 @@ public class InfixCalc implements CalcFace {
         }
       }
     }
+    if (curOp != 'N') { // checks to ensure an operator is present.
+      finalExpression = stringTotal + curOp;
+    } else {
+      throw new InvalidExpressionException();
+    }
     return postCalculator.evaluate(stringTotal + curOp);
+
   }
 }
