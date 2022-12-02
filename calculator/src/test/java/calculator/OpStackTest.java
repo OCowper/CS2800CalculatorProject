@@ -64,4 +64,14 @@ public class OpStackTest {
     testOpStack.push(Symbol.LEFT_BRACKET);
     assertEquals(testOpStack.top(), Symbol.LEFT_BRACKET, "top should return the top value");
   }
+  
+  @Test // test 9
+  void testTopTop() {
+    testOpStack.push(Symbol.PLUS);
+    testOpStack.push(Symbol.MINUS);
+    assertEquals(testOpStack.top(), Symbol.MINUS, "top of stack is a minus");
+    assertEquals(testOpStack.getSize(), 2, "size should not reduce after a top");
+    testOpStack.pop();
+    assertEquals(testOpStack.top(), Symbol.PLUS, "after a pop the top should by plus");
+  }
 }

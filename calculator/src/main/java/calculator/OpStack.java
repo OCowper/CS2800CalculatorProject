@@ -57,7 +57,13 @@ public class OpStack {
    * @return the symbol on top of the stack
    */
   public Symbol top() {
-    return pop();
+    Symbol opReturn = Symbol.INVALID;
+    try {
+      opReturn =  stackInst.top().getSymbol();
+    } catch (BadTypeException e) {
+      System.out.println("Something's gone very wrong here");
+    }
+    return opReturn;
   }
 
 }
