@@ -58,4 +58,10 @@ public class OpStackTest {
     testOpStack.pop();
     assertEquals(testOpStack.getSize(), 0, "push then pop should be size 0");
   }
+  
+  @Test // test 8
+  void testTop() {
+    testOpStack.push(Symbol.LEFT_BRACKET);
+    assertEquals(testOpStack.top(), Symbol.LEFT_BRACKET, "top should return the top value");
+  }
 }

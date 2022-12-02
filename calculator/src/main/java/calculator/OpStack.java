@@ -51,4 +51,13 @@ public class OpStack {
     return opReturn;
   }
 
+  /**
+   * Returns the top stack symbol without removing it.
+   *
+   * @return the symbol on top of the stack
+   */
+  public Symbol top() {
+    return pop();
+  }
+
 }
