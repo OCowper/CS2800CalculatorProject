@@ -51,7 +51,7 @@ public class NumStack {
       floatReturn = stackInst.pop().getValue();
     } catch (BadTypeException e) {
       System.out.println("something's gone very wrong here");
-    }
+    } // should never throw as numstack only pushes floats
     return floatReturn;
 
   }

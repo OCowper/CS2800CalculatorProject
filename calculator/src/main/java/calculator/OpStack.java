@@ -6,9 +6,9 @@ package calculator;
  * @author zkac355
  */
 public class OpStack {
-  
+
   private Stack stackInst;
-  
+
   /**
    * Constructs an instance of OpStack with a new stack as a field.
    */
@@ -32,16 +32,23 @@ public class OpStack {
    */
   public void push(Symbol s) {
     stackInst.push(new Entry(s));
-    
+
   }
 
   /**
-   * Returns and removes the top symbol from the stack.
+   * Returns and removes the top symbol from the stack. Has to be a symbol as OpStack can only push
+   * symbols.
    *
    * @return the value on top of the stack
    */
   public Symbol pop() {
-    return Symbol.MINUS;
+    Symbol opReturn = Symbol.INVALID;
+    try {
+      opReturn = stackInst.pop().getSymbol();
+    } catch (BadTypeException e) {
+      System.out.println("Something's gone particularly wrong here");
+    } // should never throw as opstack only pushes symbols
+    return opReturn;
   }
 
 }

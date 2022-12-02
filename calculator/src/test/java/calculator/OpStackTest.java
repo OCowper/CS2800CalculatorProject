@@ -38,9 +38,18 @@ public class OpStackTest {
     assertEquals(testOpStack.getSize(), 1, "size should be 1 after a push");
   }
   
+  @Test // test 4
   void testPop() {
     testOpStack.push(Symbol.MINUS);
     assertEquals(testOpStack.pop(), Symbol.MINUS, "pop should push the top value");
+  }
+  
+  @Test // test 6
+  void testPushPushPopPop() {
+    testOpStack.push(Symbol.DIVIDE);
+    testOpStack.push(Symbol.TIMES);
+    assertEquals(testOpStack.pop(), Symbol.TIMES, "first pop should be times");
+    assertEquals(testOpStack.pop(), Symbol.DIVIDE, "second pop should be divide");
   }
 
 }
