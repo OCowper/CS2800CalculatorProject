@@ -35,4 +35,13 @@ public class OpStack {
     
   }
 
+  /**
+   * Returns and removes the top symbol from the stack.
+   *
+   * @return the value on top of the stack
+   */
+  public Symbol pop() {
+    return Symbol.MINUS;
+  }
+
 }

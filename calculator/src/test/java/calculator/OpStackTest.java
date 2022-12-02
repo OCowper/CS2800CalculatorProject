@@ -37,5 +37,10 @@ public class OpStackTest {
     testOpStack.push(Symbol.PLUS);
     assertEquals(testOpStack.getSize(), 1, "size should be 1 after a push");
   }
+  
+  void testPop() {
+    testOpStack.push(Symbol.MINUS);
+    assertEquals(testOpStack.pop(), Symbol.MINUS, "pop should push the top value");
+  }
 
 }
