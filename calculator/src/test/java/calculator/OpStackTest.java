@@ -11,9 +11,9 @@ import org.junit.jupiter.api.Test;
  * @author zkac355
  */
 public class OpStackTest {
-  
+
   OpStack testOpStack;
-  
+
   /**
    * Setup for the testOpStack.
    */
@@ -21,29 +21,29 @@ public class OpStackTest {
   public void setup() {
     testOpStack = new OpStack();
   }
-  
+
   @Test // test 1
   void testClass() {
     testOpStack = new OpStack();
   }
-  
+
   @Test // test 2
   void testSize() {
     assertEquals(testOpStack.getSize(), 0, "size should be 0 upon creation");
   }
-  
+
   @Test // test 3
   void testPush() {
     testOpStack.push(Symbol.PLUS);
     assertEquals(testOpStack.getSize(), 1, "size should be 1 after a push");
   }
-  
+
   @Test // test 4
   void testPop() {
     testOpStack.push(Symbol.MINUS);
     assertEquals(testOpStack.pop(), Symbol.MINUS, "pop should push the top value");
   }
-  
+
   @Test // test 6
   void testPushPushPopPop() {
     testOpStack.push(Symbol.DIVIDE);
@@ -52,4 +52,10 @@ public class OpStackTest {
     assertEquals(testOpStack.pop(), Symbol.DIVIDE, "second pop should be divide");
   }
 
+  @Test // test 7
+  void testPushPopSize() {
+    testOpStack.push(Symbol.RIGHT_BRACKET);
+    testOpStack.pop();
+    assertEquals(testOpStack.getSize(), 0, "push then pop should be size 0");
+  }
 }
