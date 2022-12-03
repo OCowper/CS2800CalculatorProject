@@ -71,4 +71,11 @@ public class InfixTest {
         "extra spaces should not affect the calculator");
   }
 
+  @Test // test 9
+  void testMutipleExpressions() throws InvalidExpressionException {
+    String testExpression = "100 + 6 + 7";
+    assertEquals(testCalc.evaluate(testExpression), 113f,
+        "should be able to handle mutiple calculations");
+  }
+
 }

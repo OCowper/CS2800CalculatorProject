@@ -52,17 +52,18 @@ public class OpStack {
   }
 
   /**
-   * Returns the top stack symbol without removing it.
+   * Returns the top stack symbol without removing it. Should never catch as opStack can only ever
+   * push symbols.
    *
    * @return the symbol on top of the stack
    */
   public Symbol top() {
     Symbol opReturn = Symbol.INVALID;
     try {
-      opReturn =  stackInst.top().getSymbol();
+      opReturn = stackInst.top().getSymbol();
     } catch (BadTypeException e) {
       System.out.println("Something's gone very wrong here");
-    }
+    } // should never happen as opStack can only push symbols.
     return opReturn;
   }
 
