@@ -97,5 +97,11 @@ public class InfixTest {
     String testExpression = ("(10 + 5");
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
+  
+  @Test // test 13
+  void testRightBrackets() throws InvalidExpressionException {
+    String testExpression = ("10 + 5)");
+    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
+  }
 
 }

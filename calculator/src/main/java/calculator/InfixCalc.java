@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.EmptyStackException;
+
 /**
  * Evaluates infix expressions as strings and returns the answer as a float.
  *
@@ -37,21 +39,28 @@ public class InfixCalc implements CalcFace {
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
 
-      } else if ((curChar != ')' && !Character.isDigit(curChar))
-          && curPos == expression.length() - 1) {
-        throw new InvalidExpressionException("Must be in infix");
-        // catches expressions ending in an operator
 
 
       } else if (curChar == '(') {
         stackInst.push(strToSymb(curChar));
 
       } else if (curChar == ')') {
-        while (stackInst.top() != Symbol.LEFT_BRACKET) {
-          stringTotal = (stringTotal + " " + stackInst.pop());
+        try {
+          while (stackInst.top() != Symbol.LEFT_BRACKET) {
+
+            stringTotal = (stringTotal + " " + stackInst.pop());
+          }
+        } catch (EmptyStackException e) {
+          throw new InvalidExpressionException("Right without Left bracket");
         }
+        // if a right bracket appears there should always be a left
+        // bracket on the stack somewhere
+
         stackInst.pop(); // discards now useless left bracket
 
+      } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
+        throw new InvalidExpressionException("Must be in infix");
+        // catches expressions ending in an operator
 
       } else {
 
@@ -70,7 +79,7 @@ public class InfixCalc implements CalcFace {
     }
 
     while (stackInst.getSize() != 0) {
-      
+
       if (stackInst.top() == Symbol.LEFT_BRACKET) {
         throw new InvalidExpressionException("Left without Right Bracket");
       }
