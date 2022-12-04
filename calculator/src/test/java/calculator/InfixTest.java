@@ -91,5 +91,11 @@ public class InfixTest {
     String testExpression = ("(10 + 5) / (3 * 1)");
     assertEquals(testCalc.evaluate(testExpression), 5f, "should be able to handle brackets");
   }
+  
+  @Test // test 12
+  void testLeftBrackets() {
+    String testExpression = ("(10 + 5");
+    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
+  }
 
 }

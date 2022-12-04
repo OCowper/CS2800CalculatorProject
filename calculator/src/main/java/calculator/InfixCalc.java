@@ -70,6 +70,10 @@ public class InfixCalc implements CalcFace {
     }
 
     while (stackInst.getSize() != 0) {
+      
+      if (stackInst.top() == Symbol.LEFT_BRACKET) {
+        throw new InvalidExpressionException("Left without Right Bracket");
+      }
 
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
