@@ -110,6 +110,10 @@ public class InfixTest {
     assertEquals(testCalc.evaluate(testExpression), 25.4f, "should be able to handle decimals");
   }
   
-  
+  @Test // test 15
+  void testSpaceFollowingDecimal() {
+    String testExpression = ("20 + 5.");
+    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
+  }
 
 }

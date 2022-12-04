@@ -33,13 +33,20 @@ public class InfixCalc implements CalcFace {
     stackInst = new OpStack();
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
-      
-      
-      if (Character.isDigit(curChar) || curChar == '.') {
-        
+
+
+      if (Character.isDigit(curChar)) {
+
+
+        stringTotal = stringTotal + curChar;
+
+      } else if (curChar == '.') {
+        if (curPos == expression.length() - 1) {
+          throw new InvalidExpressionException("Decimal Error");
+        }
         
         stringTotal = stringTotal + curChar;
-        
+
 
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
