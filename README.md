@@ -13,4 +13,4 @@ run mvn clean compile javafx:run
 User instructions - select a notation, enter an expression, press calculate.
 You must uses spaces in between each number and operator. (except brackets)
 
-current branch: main
+current branch: RefactorCleanup
