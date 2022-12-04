@@ -1,5 +1,7 @@
 package calculator;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -33,6 +35,7 @@ public class CalcControllerTest {
   void testConstruction() {
     Notation curMethod = Notation.POSTFIX;
     testController = new CalcController(testView, curMethod);
+    assertEquals(testController.getAnswer(), null, "should be null on construction");
   } // the controller should be instanstiated with the view it is controlling
   // refactored to support enum notation rather than boolean
 
