@@ -115,5 +115,11 @@ public class InfixTest {
     String testExpression = ("20 + 5.");
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
+  
+  @Test // test 16
+  void testOtherFollowingDecimal() {
+    String testExpression = ("20. + 4");
+    assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
+  }
 
 }

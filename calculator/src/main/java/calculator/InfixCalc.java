@@ -43,8 +43,16 @@ public class InfixCalc implements CalcFace {
       } else if (curChar == '.') {
         if (curPos == expression.length() - 1) {
           throw new InvalidExpressionException("Decimal Error");
+          // ensures a decimal is not the last character
+        } else if (!Character.isDigit(expression.charAt(curPos + 1))) {
+          throw new InvalidExpressionException("Decimal Error");
+          // ensures only digits after decimals
+          // has to be in a seperate branch
+          // or it could do curChar + 1 and be out of bounds
         }
-        
+
+
+
         stringTotal = stringTotal + curChar;
 
 
