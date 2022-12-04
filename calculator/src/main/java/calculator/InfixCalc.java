@@ -16,7 +16,9 @@ public class InfixCalc implements CalcFace {
     postCalculator = new PostfixCalc();
   }
 
+  // the calculator used to evaluate expressions once converted
   private PostfixCalc postCalculator;
+  // the stack used to store operators during conversion
   private OpStack stackInst;
 
   /**
@@ -27,17 +29,18 @@ public class InfixCalc implements CalcFace {
    * @throws InvalidExpressionException if an invalid expression is recieved
    */
   public Float evaluate(String expression) throws InvalidExpressionException {
+    // the currently considered character
     char curChar;
+    // used as the output queue - a expression token is added when necessary
     String stringTotal = "";
+    // the current operator - if invalid by the end, no operator submitted
     Symbol curOp = Symbol.INVALID;
+    // constructs a new stack each time so that old error stacks do not affect subsequent calcs
     stackInst = new OpStack();
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
 
-
       if (Character.isDigit(curChar)) {
-
-
         stringTotal = stringTotal + curChar;
 
       } else if (curChar == '.') {
@@ -50,16 +53,10 @@ public class InfixCalc implements CalcFace {
           // has to be in a seperate branch
           // or it could do curChar + 1 and be out of bounds
         }
-
-
-
         stringTotal = stringTotal + curChar;
-
 
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
-
-
 
       } else if (curChar == '(') {
         stackInst.push(strToSymb(curChar));
@@ -67,7 +64,6 @@ public class InfixCalc implements CalcFace {
       } else if (curChar == ')') {
         try {
           while (stackInst.top() != Symbol.LEFT_BRACKET) {
-
             stringTotal = (stringTotal + " " + stackInst.pop());
           }
         } catch (EmptyStackException e) {
@@ -75,7 +71,6 @@ public class InfixCalc implements CalcFace {
         }
         // if a right bracket appears there should always be a left
         // bracket on the stack somewhere
-
         stackInst.pop(); // discards now useless left bracket
 
       } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
@@ -83,31 +78,29 @@ public class InfixCalc implements CalcFace {
         // catches expressions ending in an operator
 
       } else {
-
         curOp = strToSymb(curChar);
         while (stackInst.getSize() > 0
             && (precedenceCheck(curOp) <= precedenceCheck(stackInst.top()))) {
           stringTotal = (stringTotal + "" + stackInst.pop());
-        }
+        } // pops onto queue if the operator on stack is higher or equal precedence
         stackInst.push(curOp);
-
       }
     }
 
     if (curOp == Symbol.INVALID) {
       throw new InvalidExpressionException("No operator submitted");
-    }
+    } // if no symbol detected throws
 
     while (stackInst.getSize() != 0) {
-
       if (stackInst.top() == Symbol.LEFT_BRACKET) {
         throw new InvalidExpressionException("Left without Right Bracket");
       }
-
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
+    // there should be no left brackets left on stack - as that would mean left without right
+    // bracket
     return postCalculator.evaluate(stringTotal);
-  }
+  } // parses the now postfix expression into the postfix calculator
 
   // takes in a char and converts it into one of the possible operators
   private Symbol strToSymb(char strSymbol) {
@@ -129,6 +122,8 @@ public class InfixCalc implements CalcFace {
     }
   }
 
+  // returns the precendence of an operator. Left Bracket needs to be discarded in favour of any
+  // other operator so it is given -1
   private int precedenceCheck(Symbol operand) throws InvalidExpressionException {
     switch (operand) {
       case TIMES:
