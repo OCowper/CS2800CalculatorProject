@@ -1,5 +1,16 @@
 Current:
 
+Release Version 0.3:
+
+Added functionality for Infix calculations - selected by the user.
+
+This release is to collect feedback from the client on submitted and recieving the answers for infix expressions
+
+
+
+Past Release Notes:
+
+
 Release Version 0.2:
 
 Added full functionality for postfix calculations - postfix must be selected by the user. Infix is still faked
@@ -12,10 +23,6 @@ This release is to collect client feedback on error messages, tooltips, and expr
 
 
 
-
-
-
-Past Release Notes:
 
 
 Release Version 0.1
