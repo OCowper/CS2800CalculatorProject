@@ -117,5 +117,6 @@ public class PostfixTest {
       testExpression = testExpression + "1 + ";
     }
     assertEquals(testCalculator.evaluate(testExpression), 101f, "large expressions should work");
+  
   }
 }
