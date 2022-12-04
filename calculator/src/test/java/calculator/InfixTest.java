@@ -103,5 +103,13 @@ public class InfixTest {
     String testExpression = ("10 + 5)");
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
+  
+  @Test // test 14
+  void testDecimal() throws InvalidExpressionException {
+    String testExpression = ("20.4 + 5");
+    assertEquals(testCalc.evaluate(testExpression), 25.4f, "should be able to handle decimals");
+  }
+  
+  
 
 }

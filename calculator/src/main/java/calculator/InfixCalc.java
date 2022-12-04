@@ -33,8 +33,13 @@ public class InfixCalc implements CalcFace {
     stackInst = new OpStack();
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
-      if (Character.isDigit(curChar)) {
+      
+      
+      if (Character.isDigit(curChar) || curChar == '.') {
+        
+        
         stringTotal = stringTotal + curChar;
+        
 
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
