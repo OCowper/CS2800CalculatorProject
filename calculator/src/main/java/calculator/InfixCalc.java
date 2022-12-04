@@ -40,9 +40,15 @@ public class InfixCalc implements CalcFace {
       } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
         throw new InvalidExpressionException("Must be in infix");
         // catches expressions ending in an operator
+        
 
       } else {
+
         curOp = strToSymb(curChar);
+        while (stackInst.getSize() > 0
+            && (precedenceCheck(curOp) <= precedenceCheck(stackInst.top()))) {
+          stringTotal = (stringTotal + "" + stackInst.pop());
+        }
         stackInst.push(curOp);
 
       }
@@ -51,7 +57,7 @@ public class InfixCalc implements CalcFace {
     if (curOp == Symbol.INVALID) {
       throw new InvalidExpressionException("No operator submitted");
     }
-    
+
     while (stackInst.getSize() != 0) {
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
@@ -76,6 +82,20 @@ public class InfixCalc implements CalcFace {
       default:
         return Symbol.INVALID;
     }
+  }
+
+  private int precedenceCheck(Symbol operand) throws InvalidExpressionException {
+    switch (operand) {
+      case TIMES:
+      case DIVIDE:
+        return 1;
+      case PLUS:
+      case MINUS:
+        return 0;
+      default:
+        throw new InvalidExpressionException("Incorrect Operator");
+    }
+
   }
 }
 

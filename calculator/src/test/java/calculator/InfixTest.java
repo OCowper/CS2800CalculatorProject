@@ -78,4 +78,12 @@ public class InfixTest {
         "should be able to handle mutiple calculations");
   }
 
+  @Test // test 10
+  void testPrecedence() throws InvalidExpressionException {
+    String testExpression = "10 + 5 - 4 - 4";
+    assertEquals(testCalc.evaluate(testExpression), 7f, "should be able to deal with BODMAS");
+    testExpression = "10 + 5 / 5";
+    assertEquals(testCalc.evaluate(testExpression), 11f, "should evaluate 5/5 first");
+  }
+
 }
