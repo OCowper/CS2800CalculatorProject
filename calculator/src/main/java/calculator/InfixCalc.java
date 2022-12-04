@@ -1,7 +1,7 @@
 package calculator;
 
 /**
- * Evalutes infix expressions as strings and returns the answer as a float.
+ * Evaluates infix expressions as strings and returns the answer as a float.
  *
  * @author zkac355
  */
@@ -37,10 +37,21 @@ public class InfixCalc implements CalcFace {
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
 
-      } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
+      } else if ((curChar != ')' && !Character.isDigit(curChar))
+          && curPos == expression.length() - 1) {
         throw new InvalidExpressionException("Must be in infix");
         // catches expressions ending in an operator
-        
+
+
+      } else if (curChar == '(') {
+        stackInst.push(strToSymb(curChar));
+
+      } else if (curChar == ')') {
+        while (stackInst.top() != Symbol.LEFT_BRACKET) {
+          stringTotal = (stringTotal + " " + stackInst.pop());
+        }
+        stackInst.pop(); // discards now useless left bracket
+
 
       } else {
 
@@ -59,6 +70,7 @@ public class InfixCalc implements CalcFace {
     }
 
     while (stackInst.getSize() != 0) {
+
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
     return postCalculator.evaluate(stringTotal);
@@ -92,6 +104,9 @@ public class InfixCalc implements CalcFace {
       case PLUS:
       case MINUS:
         return 0;
+      case LEFT_BRACKET:
+        return -1;
+      // ensures no popping on a left bracket as per shunting algorithm
       default:
         throw new InvalidExpressionException("Incorrect Operator");
     }
