@@ -14,12 +14,9 @@ public class CalcModel implements Subject {
   // the instance of controller observing the model - so that controller can be updated with the
   // calculated answer
   private Observer obs;
-  
-  // calculator used to evaluate expressions written in postfix. Instantiated in the constructor.
-  private PostfixCalc postCalculator;
-  
-  // calculator used to evaluate expressions written in infix. Instantiated in the constructor.
-  private InfixCalc inCalculator;
+
+  // the factory used to generate calculators when required
+  private CalcFactory generator;
 
   /**
    * Returns the answer as a float.
@@ -38,37 +35,20 @@ public class CalcModel implements Subject {
    */
   public CalcModel(CalcController cont) {
     addObserver(cont);
-    postCalculator = new PostfixCalc();
-    inCalculator = new InfixCalc();
+    generator = new CalcFactory();
   }
 
   /**
-   * Selects a calculation method and uses it to return a value, which is then put into the answer
-   * field.
+   * Generates an appropriate calculator and uses it to evaluate the expression, and then updates
+   * the controller.
    *
    * @param expression the expression to be calculated as a string
    * @param type an enum containing either postfix or infix
    * @throws InvalidExpressionException if an incorrect expression is submitted
    */
   public void evaluate(String expression, Notation type) throws InvalidExpressionException {
-    if (type == Notation.INFIX) {
-      answer = infixCalc(expression);
-    } else {
-      answer = postfixCalc(expression);
-    }
+    answer = generator.createCalculator(type).evaluate(expression);
     notifyObserver(obs); // updates the observer with the result
-  }
-
-  // calculation with the postfix method - currently faked
-  private float postfixCalc(String expression) throws InvalidExpressionException {
-    return postCalculator.evaluate(expression);
-
-  }
-
-  // calculation with the infix method - currently faked
-  private float infixCalc(String expression) throws InvalidExpressionException {
-    return inCalculator.evaluate(expression);
-
   }
 
   @Override

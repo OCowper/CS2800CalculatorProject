@@ -7,6 +7,7 @@ package calculator;
  */
 public class NumStack {
 
+  // the stack instance used by NumStack for stack operations.
   private Stack stackInst;
 
 

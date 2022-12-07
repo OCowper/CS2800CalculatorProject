@@ -7,6 +7,7 @@ package calculator;
  */
 public class OpStack {
 
+  // the stack instance used by OpStack for stack operations
   private Stack stackInst;
 
   /**

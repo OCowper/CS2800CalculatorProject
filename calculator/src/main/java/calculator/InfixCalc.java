@@ -28,6 +28,8 @@ public class InfixCalc implements CalcFace {
    * @return the answer as a float
    * @throws InvalidExpressionException if an invalid expression is recieved
    */
+
+  // shunting yard algorithm writeup found at https://en.wikipedia.org/wiki/Shunting_yard_algorithm
   public Float evaluate(String expression) throws InvalidExpressionException {
     // the currently considered character
     char curChar;
