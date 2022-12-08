@@ -13,7 +13,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author zkac355
  */
-public class CalView implements ViewInterface, Subject {
+public class CalcView implements ViewInterface, Subject {
 
   // the observer viewing this class
   public Observer obs;

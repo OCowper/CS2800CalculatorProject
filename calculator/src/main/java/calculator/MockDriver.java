@@ -25,7 +25,7 @@ public class MockDriver extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CalView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CalcView.fxml"));
     Scene scene = null;
     try {
       scene = new Scene(loader.load(), 800, 500);
