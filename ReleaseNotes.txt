@@ -1,14 +1,23 @@
 Current:
 
+Release Version 1.0:
+
+
+Full Release! Functionality present includes: Postfix and Infix Calculations. Error Checking. Graphical User Interface.
+
+General Stability, Memory usage, and Efficiency Upgrages in this release.
+
+
+
+
+Past Release Notes:
+
 Release Version 0.3:
 
 Added functionality for Infix calculations - selected by the user.
 
 This release is to collect feedback from the client on submitted and recieving the answers for infix expressions
 
-
-
-Past Release Notes:
 
 
 Release Version 0.2:
