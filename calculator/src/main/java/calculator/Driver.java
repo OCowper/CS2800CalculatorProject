@@ -13,6 +13,11 @@ import javafx.stage.Stage;
  * @author zkac355
  */
 public class Driver extends Application {
+  
+  /**
+   * Constructs an empty instance of Driver.
+   */
+  public Driver() {}
 
   /**
    * Initialises the objects used to run JavaFX and creates the starting screen.
