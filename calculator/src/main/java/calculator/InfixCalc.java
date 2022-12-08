@@ -10,7 +10,7 @@ import java.util.EmptyStackException;
 public class InfixCalc implements CalcFace {
 
   /**
-   * Defines an instance of InfixCalc.
+   * Defines an instance of InfixCalc containing a postfix calculator.
    */
   public InfixCalc() {
     postCalculator = new PostfixCalc();
@@ -39,11 +39,13 @@ public class InfixCalc implements CalcFace {
     Symbol curOp = Symbol.INVALID;
     // constructs a new stack each time so that old error stacks do not affect subsequent calcs
     stackInst = new OpStack();
+    
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
 
       if (Character.isDigit(curChar)) {
         stringTotal = stringTotal + curChar;
+        // appends the character into the output queue
 
       } else if (curChar == '.') {
         if (curPos == expression.length() - 1) {
@@ -59,6 +61,7 @@ public class InfixCalc implements CalcFace {
 
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
+        // whitespace must be sent to queue for postfix calc to work
 
       } else if (curChar == '(') {
         stackInst.push(strToSymb(curChar));
@@ -96,6 +99,7 @@ public class InfixCalc implements CalcFace {
     while (stackInst.getSize() != 0) {
       if (stackInst.top() == Symbol.LEFT_BRACKET) {
         throw new InvalidExpressionException("Left without Right Bracket");
+        // if there is still a left bracket left at this point then there is an error
       }
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
