@@ -29,7 +29,7 @@ public class CalcModel implements Subject {
 
   /**
    * Constructs a new instance of the model. It immediately adds the parsed in controller as an
-   * observer, as well as instantiating instances of both controller types to be used.
+   * observer, as well as instantiating the factory for selecting calculator types.
    *
    * @param cont the controller to be added as an observer.
    */
@@ -48,6 +48,7 @@ public class CalcModel implements Subject {
    */
   public void evaluate(String expression, Notation type) throws InvalidExpressionException {
     answer = generator.createCalculator(type).evaluate(expression);
+    // receives the correct calculator then evaluates on it
     notifyObserver(obs); // updates the observer with the result
   }
 
