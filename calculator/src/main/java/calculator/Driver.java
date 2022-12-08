@@ -12,7 +12,7 @@ import javafx.stage.Stage;
  *
  * @author zkac355
  */
-public class MockDriver extends Application {
+public class Driver extends Application {
 
   /**
    * Initialises the objects used to run JavaFX and creates the starting screen.
