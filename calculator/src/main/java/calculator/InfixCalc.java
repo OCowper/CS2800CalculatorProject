@@ -128,7 +128,7 @@ public class InfixCalc implements CalcFace {
     }
   }
 
-  // returns the precendence of an operator. Left Bracket needs to be discarded in favour of any
+  // returns the precedence of an operator. Left Bracket needs to be discarded in favour of any
   // other operator so it is given -1
   private int precedenceCheck(Symbol operand) throws InvalidExpressionException {
     switch (operand) {

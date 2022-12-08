@@ -157,14 +157,15 @@ class StackTest {
   void testToStringOther() {
     testStack.push(new Entry(3.0f));
     testStack.push(new Entry(Symbol.PLUS));
-    testStack.push(new Entry("teststring"));
-    assertEquals(testStack.toString(), "[teststring, +, 3.0]");
+    assertEquals(testStack.toString(), "[+, 3.0]");
   } // demonstrates the toString works with different types.
+  // refactored at end of project to remove strings, which are no longer needed
 
   // after test 18 stack was refactored to use an ArrayList rather than an Array.
   // difficult to show this with tests as the outside interfaces are exactly the same
   // this required some fiddling with pop and push and top to use ArrayList methods
   // rather than array methods - but the logic of the code remains the same
+
 }
 
 

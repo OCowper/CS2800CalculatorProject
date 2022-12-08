@@ -36,8 +36,8 @@ class EntryTest {
   void testConstruction() {
     testEntry = new Entry(5.0f);
     testEntry = new Entry(Symbol.TIMES);
-    testEntry = new Entry("teststring");
   } // passed by creating constructors for constrained types (and empty constructor for test 1)
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 3
   void testGetType() {
@@ -47,50 +47,45 @@ class EntryTest {
 
   @Test // test 4
   void testAllTypes() {
-    testEntry = new Entry("teststring");
-    assertEquals(testEntry.getType(), Type.STRING, "string should have type string");
     testEntry = new Entry(Symbol.DIVIDE);
     assertEquals(testEntry.getType(), Type.SYMBOL, "divide should have type symbol");
   } // passed by setting the value of type in each constructor
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 5
   void testGetValues() throws BadTypeException {
     testEntry = new Entry(5.0f);
     assertEquals(testEntry.getValue(), 5.0f, "should return 5 as a float");
-    testEntry = new Entry("teststring");
-    assertEquals(testEntry.getString(), "teststring", "should return teststring");
     testEntry = new Entry(Symbol.PLUS);
     assertEquals(testEntry.getSymbol(), Symbol.PLUS, "should return a plus sign");
   } // passed by adding a faked getters
   // fakery here was removed much later on (see test 11)
   // this test was refactored after test 6 to throw BadTypeException
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 6
   void testWrongValues() {
     testEntry = new Entry(5.0f);
-    assertThrows(BadTypeException.class, () -> testEntry.getString(),
-        "getString on float should throw");
-    testEntry = new Entry("teststring");
     assertThrows(BadTypeException.class, () -> testEntry.getSymbol(),
-        "getSymbol on a string should throw");
+        "getSymbol on a value should throw");
     testEntry = new Entry(Symbol.MINUS);
     assertThrows(BadTypeException.class, () -> testEntry.getValue(),
         "getValue on a symbol should throw");
   } // passed by adding throws in all getters for when the type does not match
   // In order to pass this test I moved to implementing BadTypeException during.
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 7
   void testToString() {
     testEntry = new Entry(5.0f);
     assertEquals(testEntry.toString(), "5.0", "should print 5");
-    testEntry = new Entry("teststring");
-    assertEquals(testEntry.toString(), "teststring", "should print teststring");
     testEntry = new Entry(Symbol.PLUS);
     assertEquals(testEntry.toString(), "+", "should print plus symbol");
     testEntry = new Entry();
     assertEquals(testEntry.toString(), "invalid", "empty entry should print invalid");
   } // added a case switched toString and removed constructor fakery to actually assign inputs to
   // fields
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 8
   void testEquals() {
@@ -106,27 +101,22 @@ class EntryTest {
     testEntry3 = new Entry(Symbol.MINUS);
     assertEquals(testEntry, testEntry2, "two symbols with same value should be equal");
     assertFalse(testEntry == testEntry3, "two symbols with different value should be unequal");
-    testEntry = new Entry("teststring");
-    testEntry2 = new Entry("teststring");
-    testEntry3 = new Entry("falsestring");
-    assertEquals(testEntry, testEntry2, "two strings with same value should be equal");
-    assertFalse(testEntry == testEntry2, "two strings with different values should be unequal");
     Entry nullEntry = null;
     Entry nullEntry2 = null;
     assertEquals(nullEntry, nullEntry2, "two invalids should be equal");
   } // passed by adding an equals method with cases for each type
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 9
   void testNotEquals() {
     testEntry = new Entry(5.0f);
     testEntry2 = new Entry(Symbol.PLUS);
-    testEntry3 = new Entry("teststring");
     assertFalse(testEntry == testEntry2, "float and symbol should be unequal");
-    assertFalse(testEntry == testEntry3, "float and string should be unequal");
-    assertFalse(testEntry2 == testEntry3, "symbol and string should be unequal");
+    assertFalse(testEntry2 == testEntry, "symbol and float should be unequal");
     Entry nullEntry = null;
     assertFalse(testEntry == nullEntry, "valid and null data should be unequal");
   } // demonstrates equals also works when comparing different types
+  // refactored in cleanup branch to remove string as a possible type
 
   @Test // test 10
   void testHash() {
@@ -138,13 +128,12 @@ class EntryTest {
   void testOtherValues() throws BadTypeException {
     testEntry = new Entry(8.4f);
     testEntry2 = new Entry(Symbol.LEFT_BRACKET);
-    testEntry3 = new Entry("hello world");
     assertEquals(testEntry.getValue(), 8.4f, "8.4 should return 8.4");
     assertEquals(testEntry2.getSymbol(), Symbol.LEFT_BRACKET, "( should return (");
-    assertEquals(testEntry3.getString(), "hello world", "hello world should return hello world");
   }
   // at this point I realised I never removed the fakery on the getters
   // passed by replacing hard coded getters with getters that actually access the fields
+  // refactored in cleanup branch to remove string as a possible type
 
   // after test 11 I moved back to Stack and refactored to work with Entries
   // This can be seen in test 17 of StackTest

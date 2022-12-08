@@ -6,7 +6,7 @@ package calculator;
  * @author zkac355
  */
 public enum Type {
-  NUMBER("value"), SYMBOL("operator"), STRING("string"), INVALID("invalid type");
+  NUMBER("value"), SYMBOL("operator"), INVALID("invalid type");
 
   private String name;
 
