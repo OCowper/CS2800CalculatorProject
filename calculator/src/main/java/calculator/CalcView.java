@@ -24,6 +24,7 @@ public class CalcView implements ViewInterface, Subject {
   // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
   // cannot occur if empty.
   private Notation type = Notation.POSTFIX;
+  
 
   /**
    * Returns the expression entered by the user in the text field.

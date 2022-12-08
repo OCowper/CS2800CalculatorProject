@@ -10,7 +10,7 @@ package calculator;
  */
 public class CalcController implements Observer {
 
-  // field containing the instance of model being used.
+  // field containing the instance of model being used. Parses itself into the model to link them.
   private CalcModel model = new CalcModel(this);
   // field containing the instance of view being used. This is instantiated by the launcher.
   private ViewInterface view;
@@ -65,11 +65,11 @@ public class CalcController implements Observer {
    */
   @Override
   public void update(String expression, Notation calcType) {
-   
+
     String curExpression = this.expression;
     this.expression = expression;
     this.type = calcType;
-    if (curExpression != expression) { // does not recalculate if only the method has changed
+    if (curExpression != expression) { // does not recalculate if only the notation has changed
       calculate();
     }
   }
@@ -92,7 +92,8 @@ public class CalcController implements Observer {
     } catch (InvalidExpressionException e) {
       returnAnswer(e.getMessage());
     }
-
+    // all invalid expressions exceptions are caught here and the error message is returned instead
+    // of an answer.
   }
 
 }
