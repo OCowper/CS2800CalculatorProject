@@ -21,5 +21,19 @@ public interface ViewInterface {
    * @param str the answer which has been calculated
    */
   public void setAnswer(String str);
+  
+  /**
+   * Adds an observer to the view.
+   *
+   * @param obs the observer to be added
+   */
+  public void addObserver(Observer obs);
+  
+  /**
+   * Notifies any added observers.
+   *
+   * @param obs the observer to be notified.
+   */
+  public void notifyObserver(Observer obs);
 
 }

@@ -13,14 +13,14 @@ import org.junit.jupiter.api.Test;
 public class CalcControllerTest {
 
   private CalcController testController;
-  private CalView testView;
+  private CalcView testView;
 
   /**
    * Setups the tests by creating a controller instance before each one.
    */
   @BeforeEach
   public void setup() {
-    testView = new CalView();
+    testView = new CalcView();
     Notation curMethod = Notation.POSTFIX;
     testController = new CalcController(testView, curMethod);
   } // refactored to support enum notation rather than boolean

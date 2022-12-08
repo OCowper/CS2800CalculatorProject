@@ -21,11 +21,10 @@ class TypeTest {
     assertEquals(testType.toString(), "value", "should print number");
     testType = Type.SYMBOL;
     assertEquals(testType.toString(), "operator", "should print operator");
-    testType = Type.STRING;
-    assertEquals(testType.toString(), "string", "should print string");
     testType = Type.INVALID;
     assertEquals(testType.toString(), "invalid type", "should print invalid type");
   } // passed by adding a toString to type to print types
+  // refactored in cleanup branch to remove string as a possible type
 
   // after this test I moved to implementing entry
 

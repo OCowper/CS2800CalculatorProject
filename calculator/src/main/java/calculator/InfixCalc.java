@@ -10,7 +10,7 @@ import java.util.EmptyStackException;
 public class InfixCalc implements CalcFace {
 
   /**
-   * Defines an instance of InfixCalc.
+   * Defines an instance of InfixCalc containing a postfix calculator.
    */
   public InfixCalc() {
     postCalculator = new PostfixCalc();
@@ -28,6 +28,8 @@ public class InfixCalc implements CalcFace {
    * @return the answer as a float
    * @throws InvalidExpressionException if an invalid expression is recieved
    */
+
+  // shunting yard algorithm writeup found at https://en.wikipedia.org/wiki/Shunting_yard_algorithm
   public Float evaluate(String expression) throws InvalidExpressionException {
     // the currently considered character
     char curChar;
@@ -37,18 +39,26 @@ public class InfixCalc implements CalcFace {
     Symbol curOp = Symbol.INVALID;
     // constructs a new stack each time so that old error stacks do not affect subsequent calcs
     stackInst = new OpStack();
+    // flag to detect errors
+    boolean valid = true;
+    // string for error printing
+    String errorString = "Invalid Expression - ";
+
     for (int curPos = 0; curPos < expression.length(); curPos++) {
       curChar = expression.charAt(curPos);
 
       if (Character.isDigit(curChar)) {
         stringTotal = stringTotal + curChar;
+        // appends the character into the output queue
 
       } else if (curChar == '.') {
         if (curPos == expression.length() - 1) {
-          throw new InvalidExpressionException("Decimal Error");
+          valid = false;
+          errorString = errorString + "decimal error";
           // ensures a decimal is not the last character
         } else if (!Character.isDigit(expression.charAt(curPos + 1))) {
-          throw new InvalidExpressionException("Decimal Error");
+          valid = false;
+          errorString = errorString + "decimal error";
           // ensures only digits after decimals
           // has to be in a seperate branch
           // or it could do curChar + 1 and be out of bounds
@@ -57,6 +67,7 @@ public class InfixCalc implements CalcFace {
 
       } else if (Character.isWhitespace(curChar)) {
         stringTotal = stringTotal + " ";
+        // whitespace must be sent to queue for postfix calc to work
 
       } else if (curChar == '(') {
         stackInst.push(strToSymb(curChar));
@@ -66,15 +77,17 @@ public class InfixCalc implements CalcFace {
           while (stackInst.top() != Symbol.LEFT_BRACKET) {
             stringTotal = (stringTotal + " " + stackInst.pop());
           }
+          stackInst.pop(); // discards now useless left bracket
         } catch (EmptyStackException e) {
-          throw new InvalidExpressionException("Right without Left bracket");
+          valid = false;
+          errorString = errorString + "Right without Left Bracket";
         }
         // if a right bracket appears there should always be a left
         // bracket on the stack somewhere
-        stackInst.pop(); // discards now useless left bracket
 
       } else if (!Character.isDigit(curChar) && curPos == expression.length() - 1) {
-        throw new InvalidExpressionException("Must be in infix");
+        valid = false;
+        errorString = errorString + "Must be in infix";
         // catches expressions ending in an operator
 
       } else {
@@ -88,17 +101,23 @@ public class InfixCalc implements CalcFace {
     }
 
     if (curOp == Symbol.INVALID) {
-      throw new InvalidExpressionException("No operator submitted");
+      valid = false;
+      errorString = errorString + "No operator submitted";
     } // if no symbol detected throws
 
     while (stackInst.getSize() != 0) {
       if (stackInst.top() == Symbol.LEFT_BRACKET) {
-        throw new InvalidExpressionException("Left without Right Bracket");
+        valid = false;
+        errorString = errorString + "left without right bracket";
+        // if there is still a left bracket left at this point then there is an error
       }
       stringTotal = (stringTotal + " " + stackInst.pop());
     }
     // there should be no left brackets left on stack - as that would mean left without right
     // bracket
+    if (valid == false) {
+      throw new InvalidExpressionException(errorString);
+    }
     return postCalculator.evaluate(stringTotal);
   } // parses the now postfix expression into the postfix calculator
 
@@ -122,7 +141,7 @@ public class InfixCalc implements CalcFace {
     }
   }
 
-  // returns the precendence of an operator. Left Bracket needs to be discarded in favour of any
+  // returns the precedence of an operator. Left Bracket needs to be discarded in favour of any
   // other operator so it is given -1
   private int precedenceCheck(Symbol operand) throws InvalidExpressionException {
     switch (operand) {

@@ -10,11 +10,9 @@ import java.util.EmptyStackException;
 public class PostfixCalc implements CalcFace {
 
   /**
-   * Defines an instance of PostfixCalc. Adds a NumStack as a field.
+   * Defines an instance of PostfixCalc.
    */
-  public PostfixCalc() {
-    this.numStackInst = new NumStack();
-  }
+  public PostfixCalc() {}
 
   // the stack used for calculation
   private NumStack numStackInst;
@@ -105,11 +103,11 @@ public class PostfixCalc implements CalcFace {
       valid = false;
       errorString = errorString + "No Operator submitted ";
     }
-    if (valid) {
+    if (valid) { // if the flag has stayed valid
       return numStackInst.pop();
     } else {
       throw new InvalidExpressionException(errorString);
-    }
+    } // if ever an error was detected
   }
 
   // takes in a char and converts it into one of the possible operators

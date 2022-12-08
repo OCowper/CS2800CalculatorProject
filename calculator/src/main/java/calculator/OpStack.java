@@ -7,6 +7,7 @@ package calculator;
  */
 public class OpStack {
 
+  // the stack instance used by OpStack for stack operations
   private Stack stackInst;
 
   /**
@@ -46,7 +47,7 @@ public class OpStack {
     try {
       opReturn = stackInst.pop().getSymbol();
     } catch (BadTypeException e) {
-      System.out.println("Something's gone particularly wrong here");
+      e.printStackTrace();
     } // should never throw as opstack only pushes symbols
     return opReturn;
   }

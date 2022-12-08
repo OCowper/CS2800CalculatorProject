@@ -1,7 +1,7 @@
 package calculator;
 
 /**
- * Defines an interface to template different calculation methods.
+ * Defines an interface to template different calculation notations.
  *
  * @author zkac355
  */

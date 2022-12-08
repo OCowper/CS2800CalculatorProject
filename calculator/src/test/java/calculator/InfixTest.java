@@ -121,5 +121,5 @@ public class InfixTest {
     String testExpression = ("20. + 4");
     assertThrows(InvalidExpressionException.class, () -> testCalc.evaluate(testExpression));
   }
-
+  
 }

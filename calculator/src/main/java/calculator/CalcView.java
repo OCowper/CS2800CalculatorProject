@@ -13,7 +13,7 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author zkac355
  */
-public class CalView implements ViewInterface, Subject {
+public class CalcView implements ViewInterface, Subject {
 
   // the observer viewing this class
   public Observer obs;
@@ -24,6 +24,12 @@ public class CalView implements ViewInterface, Subject {
   // contains true if infix, false if postfix. Must be instatiated with a variable as a calculation
   // cannot occur if empty.
   private Notation type = Notation.POSTFIX;
+  
+  
+  /**
+   * Constructs an empty instance of CalcView.
+   */
+  public CalcView() {}
 
   /**
    * Returns the expression entered by the user in the text field.

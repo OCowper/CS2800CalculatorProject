@@ -12,7 +12,12 @@ import javafx.stage.Stage;
  *
  * @author zkac355
  */
-public class MockDriver extends Application {
+public class Driver extends Application {
+  
+  /**
+   * Constructs an empty instance of Driver.
+   */
+  public Driver() {}
 
   /**
    * Initialises the objects used to run JavaFX and creates the starting screen.
@@ -25,7 +30,7 @@ public class MockDriver extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CalView.fxml"));
+    FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("CalcView.fxml"));
     Scene scene = null;
     try {
       scene = new Scene(loader.load(), 800, 500);

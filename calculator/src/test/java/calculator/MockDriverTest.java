@@ -3,18 +3,18 @@ package calculator;
 import org.junit.jupiter.api.Test;
 
 /**
- * Testing for the MockDriver class.
+ * Testing for the Driver class.
  *
  * @author zkac355
  *
  */
 public class MockDriverTest {
   
-  private MockDriver driverTest;
+  private Driver driverTest;
   
   @Test // test 1
   void testClass() {
-    driverTest = new MockDriver();
+    driverTest = new Driver();
    
   } // passed by creating a mock driver class
   

@@ -29,17 +29,6 @@ public class Entry {
   }
 
   /**
-   * Constructs an instance of Entry containing a string.
-   *
-   * @param string the string for entry to contain
-   */
-  public Entry(String string) {
-    str = string;
-    type = Type.STRING;
-    // this instance of entry is given type String
-  }
-
-  /**
    * Constructs an instance of Entry containing a Symbol.
    *
    * @param which the Symbol for entry to contain
@@ -82,20 +71,6 @@ public class Entry {
   }
 
   /**
-   * If Entry contains a string, returns that value. Will only function on instances of Entry
-   * containing a String.
-   *
-   * @return returns a string contained in Entry.
-   * @throws BadTypeException throws if called on an instance of Entry that is not Type String
-   */
-  public String getString() throws BadTypeException {
-    if (type != Type.STRING) {
-      throw new BadTypeException("get String called on non String value");
-    }
-    return str;
-  }
-
-  /**
    * If Entry contains a Symbol, returns that value. Will only function on instances of Entry
    * containing a Symbol.
    *
@@ -123,8 +98,6 @@ public class Entry {
         return Float.toString(number);
       case SYMBOL:
         return other.toString();
-      case STRING:
-        return str;
       default:
         return "invalid";
     }
@@ -154,8 +127,6 @@ public class Entry {
         return Float.floatToIntBits(number) == Float.floatToIntBits(other.number);
       case SYMBOL:
         return this.other == other.other;
-      case STRING:
-        return Objects.equals(str, other.str);
       default: // case for invalid type
         return other.type == Type.INVALID;
     }
