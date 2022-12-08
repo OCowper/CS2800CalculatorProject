@@ -25,6 +25,11 @@ public class CalcView implements ViewInterface, Subject {
   // cannot occur if empty.
   private Notation type = Notation.POSTFIX;
   
+  
+  /**
+   * Constructs an empty instance of CalcView.
+   */
+  public CalcView() {}
 
   /**
    * Returns the expression entered by the user in the text field.
