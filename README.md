@@ -4,7 +4,7 @@ This project is to meet the requirements of a basic calculator given to us by th
 
 Installation instructions - 
 
-Clone from https://gitlab.cim.rhul.ac.uk/zkac355/CS2800.git
+Clone from https://github.com/OCowper/CS2800CalculatorProject.git
 
 cd into the project folder, then cd into calculator.
 
